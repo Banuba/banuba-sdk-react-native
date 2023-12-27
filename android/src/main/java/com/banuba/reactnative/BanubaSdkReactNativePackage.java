@@ -1,4 +1,4 @@
-package com.banubasdkreactnative;
+package com.banuba.reactnative;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

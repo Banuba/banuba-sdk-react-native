@@ -3,6 +3,7 @@ import {
   Platform,
   type ViewStyle,
   NativeModules,
+  UIManager,
 } from 'react-native';
 
 interface BanubaSdkManagerI {

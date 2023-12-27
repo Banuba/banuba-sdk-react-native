@@ -1,4 +1,4 @@
-package com.banubasdkreactnative;
+package com.banuba.reactnative;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
