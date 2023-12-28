@@ -70,19 +70,19 @@ class BanubaSdkManager: RCTEventEmitter {
     }
     
     @objc
-    func startVideoRecoding(_ path: String) {
+    func startVideoRecording(_ path: String) {
         banubaSdkManager.output?.startRecordingWithURL(URL(fileURLWithPath: path), delegate: self)
     }
     @objc
-    func stopVideoRecoding() {
+    func stopVideoRecording() {
         banubaSdkManager.output?.stopRecording()
     }
     @objc
-    func pauseVideoRecoding() {
+    func pauseVideoRecording() {
         banubaSdkManager.output?.pauseRecording()
     }
     @objc
-    func resumeVideoRecoding() {
+    func resumeVideoRecording() {
         banubaSdkManager.output?.resumeRecording()
     }
     
@@ -99,8 +99,6 @@ class BanubaSdkManager: RCTEventEmitter {
     }
     
     private var hasListeners = false
-    
-    private var currentVideoDuration: TimeInterval = 0
     
     private var banubaSdkManager = BNBSdkApi.BanubaSdkManager()
 }
@@ -127,11 +125,10 @@ extension BanubaSdkManager : VideoRecorderDelegate
     func onRecordingFinished(success: Bool, error: (Error)?) {
         print("onRecordingFinished(success: \(success), error: \(error?.localizedDescription ?? "nil"))")
         if hasListeners {
-            self.sendEvent(withName: recordingFinishedEvent, body: success ? currentVideoDuration : 0)
+            self.sendEvent(withName: recordingFinishedEvent, body: success)
         }
     }
     
     func onRecordingProgress(duration: TimeInterval) {
-        currentVideoDuration = duration
     }
 }
