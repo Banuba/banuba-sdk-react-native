@@ -2,6 +2,7 @@ package com.banuba.reactnative;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -9,20 +10,25 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.banuba.sdk.effect_player.Effect;
+import com.banuba.sdk.entity.RecordedVideoInfo;
 import com.banuba.sdk.manager.BanubaSdkManager;
 import com.banuba.sdk.manager.BanubaSdkTouchListener;
+import com.banuba.sdk.manager.IEventCallback;
+import com.banuba.sdk.types.Data;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter;
 import com.facebook.react.modules.core.PermissionAwareActivity;
 import com.facebook.react.modules.core.PermissionListener;
 import com.facebook.react.uimanager.UIManagerModule;
 
-class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements PermissionListener {
+class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements PermissionListener, IEventCallback {
   private static final String TAG = "BanubaSdkManagerModule";
   private static final int REQUEST_CODE_PERMISSION = 20002;
   private BanubaSdkManager mSdkManager;
+  private int mListenerCount = 0;
 
   BanubaSdkManagerModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -103,6 +109,37 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
     }
   }
 
+  @ReactMethod
+  public void startVideoRecording(@NonNull String path) {
+    getSdkManager().setCallback(this);
+    getSdkManager().startVideoRecording(path, true, null, 1.f);
+  }
+
+  @ReactMethod
+  public void stopVideoRecording() {
+    getSdkManager().stopVideoRecording();
+  }
+
+  @ReactMethod
+  public void pauseVideoRecording() {
+    getSdkManager().pauseVideoRecording();
+  }
+
+  @ReactMethod
+  public void resumeVideoRecording() {
+    getSdkManager().unpauseVideoRecording();
+  }
+
+  @ReactMethod
+  public void addListener(String eventName) {
+    mListenerCount += 1;
+  }
+
+  @ReactMethod
+  public void removeListeners(Integer count) {
+    mListenerCount -= count;
+  }
+
   private BanubaSdkManager getSdkManager() {
     if (mSdkManager == null) {
       mSdkManager = new BanubaSdkManager(getReactApplicationContext());
@@ -131,6 +168,13 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
     }
   }
 
+  private void sendEvent(String eventName, Object params) {
+      getReactApplicationContext()
+        .getJSModule(RCTDeviceEventEmitter.class)
+        .emit(eventName, params);
+  }
+
+
   @Override
   public boolean onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     if (requestCode == REQUEST_CODE_PERMISSION) {
@@ -148,5 +192,49 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   @Override
   public String getName() {
     return "BanubaSdkManager";
+  }
+
+  @Override
+  public void onCameraOpenError(@NonNull Throwable throwable) {
+
+  }
+
+  @Override
+  public void onCameraStatus(boolean b) {
+
+  }
+
+  @Override
+  public void onScreenshotReady(@NonNull Bitmap bitmap) {
+
+  }
+
+  @Override
+  public void onHQPhotoReady(@NonNull Bitmap bitmap) {
+
+  }
+
+  @Override
+  public void onVideoRecordingFinished(@NonNull RecordedVideoInfo recordedVideoInfo) {
+    if (mListenerCount > 0) {
+      sendEvent("onVideoRecordingFinished", recordedVideoInfo.getRecordedLength() / 1000.0);
+    }
+  }
+
+  @Override
+  public void onVideoRecordingStatusChange(boolean started) {
+    if(mListenerCount > 0) {
+      sendEvent("onVideoRecordingStatus", started);
+    }
+  }
+
+  @Override
+  public void onImageProcessed(@NonNull Bitmap bitmap) {
+
+  }
+
+  @Override
+  public void onFrameRendered(@NonNull Data data, int i, int i1) {
+
   }
 }

@@ -1,7 +1,11 @@
 import BNBSdkApi
 
+let recordingStatusEvent = "onVideoRecordingStatus"
+let recordingFinishedEvent = "onVideoRecordingFinished"
+
 @objc(BanubaSdkManager)
-class BanubaSdkManager: NSObject {
+class BanubaSdkManager: RCTEventEmitter {
+
     @objc
     func initialize(_ resourcePath: [String], clientTokenString: String) {
         var reactResourcePath = resourcePath
@@ -66,7 +70,68 @@ class BanubaSdkManager: NSObject {
     }
     
     @objc
-    var bridge: RCTBridge!
+    func startVideoRecoding(_ path: String) {
+        banubaSdkManager.output?.startRecordingWithURL(URL(fileURLWithPath: path), delegate: self)
+    }
+    @objc
+    func stopVideoRecoding() {
+        banubaSdkManager.output?.stopRecording()
+    }
+    @objc
+    func pauseVideoRecoding() {
+        banubaSdkManager.output?.pauseRecording()
+    }
+    @objc
+    func resumeVideoRecoding() {
+        banubaSdkManager.output?.resumeRecording()
+    }
+    
+    override func startObserving() {
+        hasListeners = true
+    }
+    
+    override func stopObserving() {
+        hasListeners = false
+    }
+    
+    override func supportedEvents() -> [String]! {
+        return [recordingStatusEvent, recordingFinishedEvent]
+    }
+    
+    private var hasListeners = false
+    
+    private var currentVideoDuration: TimeInterval = 0
     
     private var banubaSdkManager = BNBSdkApi.BanubaSdkManager()
+}
+
+extension BanubaSdkManager : VideoRecorderDelegate
+{
+    func onRecorderStateChanged(_ state: BNBSdkApi.VideoRecordingState) {
+        print("onRecorderStateChanged(\(state))")
+        if hasListeners {
+            let status: Bool
+            switch state {
+                case .recording, .processing:
+                    status = true
+                case .stopped, .paused:
+                    status = false
+                @unknown default:
+                    fatalError()
+            }
+            
+            self.sendEvent(withName: recordingStatusEvent, body: status)
+        }
+    }
+    
+    func onRecordingFinished(success: Bool, error: (Error)?) {
+        print("onRecordingFinished(success: \(success), error: \(error?.localizedDescription ?? "nil"))")
+        if hasListeners {
+            self.sendEvent(withName: recordingFinishedEvent, body: success ? currentVideoDuration : 0)
+        }
+    }
+    
+    func onRecordingProgress(duration: TimeInterval) {
+        currentVideoDuration = duration
+    }
 }

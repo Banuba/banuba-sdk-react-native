@@ -4,6 +4,7 @@ import {
   type ViewStyle,
   NativeModules,
   UIManager,
+  type NativeModule,
 } from 'react-native';
 
 interface BanubaSdkManagerI {
@@ -33,6 +34,31 @@ interface BanubaSdkManagerI {
    * @param script code to evalute
    */
   evalJs(script: string): void;
+
+  /**
+   * Start screen frames capture.
+   * @param path file to place the recording (will be in MP4 format)
+   * @see stopVideoRecording, pauseVideoRecording
+   */
+  startVideoRecording(path: string): void;
+
+  /**
+   * Stop screen frames capture.
+   * @see startVideoRecording
+   */
+  stopVideoRecording(): void;
+
+  /**
+   * Pause screen recording.
+   * @see resumeVideoRecoding, startVideoRecording
+   */
+  pauseVideoRecording(): void;
+
+  /**
+   * Resume screen recording after it was paused.
+   * @see pauseVideoRecording, startVideoRecording
+   */
+  resumeVideoRecoding(): void;
 }
 
 const LINKING_ERROR =
@@ -66,4 +92,4 @@ const BanubaSdkManager = NativeModules.BanubaSdkManager
       }
     );
 
-export default BanubaSdkManager as BanubaSdkManagerI;
+export default BanubaSdkManager as BanubaSdkManagerI & NativeModule;
