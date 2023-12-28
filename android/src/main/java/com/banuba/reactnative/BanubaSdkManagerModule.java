@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
 
@@ -79,7 +80,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
 
   @ReactMethod
   public void openCamera() {
-    if (!isCameraPermissionGranted()) {
+    if (!isPermissionGranted()) {
       requestPermission();
     } else {
       getSdkManager().openCamera();
@@ -148,8 +149,8 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   private void requestPermission() {
-    if (!isCameraPermissionGranted()) {
-      String[] permissionsList = new String[]{Manifest.permission.CAMERA};
+    if (!isPermissionGranted()) {
+      String[] permissionsList = new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
 
       PermissionAwareActivity activity = (PermissionAwareActivity) getCurrentActivity();
       if (activity == null) {
@@ -160,9 +161,12 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
     }
   }
 
-  private boolean isCameraPermissionGranted() {
+  private boolean isPermissionGranted() {
     if (Build.VERSION.SDK_INT >= 23) {
-      return getReactApplicationContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+      return getReactApplicationContext().checkSelfPermission(Manifest.permission.CAMERA)
+          == PackageManager.PERMISSION_GRANTED
+        && getReactApplicationContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO)
+          == PackageManager.PERMISSION_GRANTED;
     } else {
       return true;
     }
@@ -178,10 +182,10 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   @Override
   public boolean onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     if (requestCode == REQUEST_CODE_PERMISSION) {
-      if (isCameraPermissionGranted()) {
+      if (isPermissionGranted()) {
         getSdkManager().openCamera();
       } else {
-        Log.e(TAG, "App has no camera permissions");
+        Log.e(TAG, "App has no all the requested permissions");
       }
       return true;
     }
@@ -217,7 +221,8 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   @Override
   public void onVideoRecordingFinished(@NonNull RecordedVideoInfo recordedVideoInfo) {
     if (mListenerCount > 0) {
-      sendEvent("onVideoRecordingFinished", recordedVideoInfo.getRecordedLength() / 1000.0);
+      sendEvent("onVideoRecordingFinished",
+        !TextUtils.isEmpty(recordedVideoInfo.getFilePath()));
     }
   }
 
