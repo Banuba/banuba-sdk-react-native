@@ -9,32 +9,45 @@ video conferencing, etc.). The package includes:
 * Color filters (LUTs)
 * Face touch-up
 * Virtual backgrounds
+* Screen recording, take screenshot
 * etc.
 
-Refer [this](https://github.com/Banuba/quickstart-react-native) for instructions. 
-## Installation
-
-```sh
-npm install @banuba/react-native
-```
+## [Requirements](https://docs.banuba.com/face-ar-sdk-v1/overview/system_requirements)
 
 ## Usage
 
-```js
-import { ReactNativeView } from "@banuba/react-native";
+### Token
+Before you commit to a license, you are free to test all the features of the SDK for free. To start it, [send us a message](https://www.banuba.com/facear-sdk/face-filters#form).  
 
-// ...
 
-<ReactNativeView color="tomato" />
-```
+Feel free to [contact us](https://docs.banuba.com/face-ar-sdk-v1/support) if you have any questions.
 
-## Contributing
+### Getting Started
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+0. Clone the repository, ensure that you have setted up [React Native CLI development environment](https://reactnative.dev/docs/environment-setup).
+1. Copy and Paste your Client Token into appropriate section of [`example/src/App.tsx`](example/src/App.tsx#L18).
+2. Run `yarn` command. This will install all required dependences.
+3. (iOS only) Go to `example/ios` directory and run `pod install`. Return back to root. This will install all required iOS dependencies.
+4. Connect a device and run `yarn example ios` or `yarn example android`. Alternatively you may may open XCode or Android Studio projects from
+`example/ios` and `example/android` directories.
 
-## License
+You may also use `npm` to run the sample. See [example/README.md](example/README.md).
 
-MIT
+### Integration steps
+
+This is how to integrate Banuba SDK into existing React Native app. You still need a Client Token for this.
+
+1. Add `@banuba/react-native` [dependency](https://www.npmjs.com/package/@banuba/react-native): `npm install @banuba/react-native`.
+2. *For iOS*: add a link to the native Banuba SDK into [`ios/Podfile`](example/ios/Podfile#L13): `source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'`.
+    *For Android*: add our [maven repository](example/android/build.gradle#L13).
+3. Add code from [`example/src/App.tsx`](example/src/App.tsx) into your app.
+4. Add `effects` folder into your project. Link it with your app
+    1. iOS: just link effects folder into XCode project (`File` -> `Add Files to ...`).
+    2. Android: add [the following](example/android/app/build.gradle#L132) code into app `build.gradle`. 
+5. *For iOS*: add [`NSCameraUsageDescription`](example/ios/ReactNativeExample/Info.plist#L34).
+
+### Docs
+Refer [this file](src/index.tsx) about availabl API. You can find more info about Banuba [Face AR SDK here](https://docs.banuba.com/). 
 
 ---
 
