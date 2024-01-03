@@ -9,6 +9,9 @@ export default class App extends Component {
   ep: any;
   eventEmitter: NativeEventEmitter;
   recording = false;
+  state = {
+    recodButtonTitle: 'Tap to record',
+  };
 
   constructor(props: {} | Readonly<{}>) {
     super(props);
@@ -22,17 +25,24 @@ export default class App extends Component {
     this.eventEmitter.addListener('onVideoRecordingFinished', (success) => {
       console.log('onVideoRecordingFinished', success);
     });
+    this.eventEmitter.addListener('onScreenshotReady', (success) => {
+      console.log('onScreenshotReady', success);
+    });
   }
 
   render(): React.ReactNode {
     return (
       <View style={{ flex: 1 }}>
         <EffectPlayerView style={{ flex: 1 }} ref={this.ep} />
-        <View>
-          <Button onPress={this.onPressVideoRecording} title="Tap to record" />
+        <View
+          style={{
+            marginTop: -64,
+            marginBottom: 32,
+          }}
+        >
           <Button
-            onPress={this.onPressTakeScreenshot}
-            title="Take screenshot"
+            onPress={this.onPressVideoRecording}
+            title={this.state.recodButtonTitle}
           />
         </View>
       </View>
@@ -50,16 +60,16 @@ export default class App extends Component {
     BanubaSdkManager.stopPlayer();
   }
 
-  onPressVideoRecording(): void {
+  onPressVideoRecording = () => {
     if (!this.recording) {
       BanubaSdkManager.startVideoRecording(
         RNFS.DocumentDirectoryPath + '/video.mp4'
       );
+      this.setState({ recodButtonTitle: 'Stop recording' });
     } else {
       BanubaSdkManager.stopVideoRecording();
+      this.setState({ recodButtonTitle: 'Tap to record' });
     }
     this.recording = !this.recording;
-  }
-
-  onPressTakeScreenshot(): void {}
+  };
 }

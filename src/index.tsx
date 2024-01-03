@@ -43,7 +43,9 @@ interface BanubaSdkManagerI {
   startVideoRecording(path: string): void;
 
   /**
-   * Stop screen frames capture.
+   * Stop screen frames capture. You will recieve
+   * `onVideoRecordingFinished` native event once ready.
+   * See sample code.
    * @see startVideoRecording
    */
   stopVideoRecording(): void;
@@ -59,6 +61,14 @@ interface BanubaSdkManagerI {
    * @see pauseVideoRecording, startVideoRecording
    */
   resumeVideoRecoding(): void;
+
+  /**
+   * Capture one screen frame. When ready, you will recive
+   * `onScreenshotReady` native event. See sample code.
+   * @param path Where to store the screenshot. Output
+   * format is defined by path extension (`.jpeg` or .`png`)
+   */
+  takeScreenshot(path: string): void;
 }
 
 const LINKING_ERROR =

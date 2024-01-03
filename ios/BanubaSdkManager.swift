@@ -2,6 +2,7 @@ import BNBSdkApi
 
 let recordingStatusEvent = "onVideoRecordingStatus"
 let recordingFinishedEvent = "onVideoRecordingFinished"
+let screenshotReadyEvent = "onScreenshotReady"
 
 @objc(BanubaSdkManager)
 class BanubaSdkManager: RCTEventEmitter {
@@ -86,6 +87,30 @@ class BanubaSdkManager: RCTEventEmitter {
         banubaSdkManager.output?.resumeRecording()
     }
     
+    @objc
+    func takeScreenshot(_ path: String) {
+        banubaSdkManager.output?.takeSnapshot(handler: { image in
+            var success = false;
+            if let image = image {
+                var data: Data?
+                if path.hasSuffix(".jpeg") || path.hasSuffix(".jpg") {
+                    data = image.jpegData(compressionQuality: 0.7)
+                } else {
+                    data = image.pngData()
+                }
+                do {
+                    if data != nil {
+                        try data?.write(to: URL(fileURLWithPath: path))
+                        success = true
+                    }
+                } catch {
+                    print("Error writing screenshot \(error)")
+                }
+            }
+            self.sendEvent(withName: screenshotReadyEvent, body: success)
+        })
+    }
+    
     override func startObserving() {
         hasListeners = true
     }
@@ -95,7 +120,7 @@ class BanubaSdkManager: RCTEventEmitter {
     }
     
     override func supportedEvents() -> [String]! {
-        return [recordingStatusEvent, recordingFinishedEvent]
+        return [recordingStatusEvent, recordingFinishedEvent, screenshotReadyEvent]
     }
     
     private var hasListeners = false

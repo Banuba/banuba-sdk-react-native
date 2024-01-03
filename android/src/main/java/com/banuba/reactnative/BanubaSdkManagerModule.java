@@ -3,6 +3,7 @@ package com.banuba.reactnative;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,11 +26,16 @@ import com.facebook.react.modules.core.PermissionAwareActivity;
 import com.facebook.react.modules.core.PermissionListener;
 import com.facebook.react.uimanager.UIManagerModule;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements PermissionListener, IEventCallback {
   private static final String TAG = "BanubaSdkManagerModule";
   private static final int REQUEST_CODE_PERMISSION = 20002;
   private BanubaSdkManager mSdkManager;
   private int mListenerCount = 0;
+
+  private String mScreenshotPath;
 
   BanubaSdkManagerModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -132,6 +138,13 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   @ReactMethod
+  public void takeScreenshot(String path) {
+    mScreenshotPath = path;
+    getSdkManager().setCallback(this);
+    getSdkManager().takePhoto(null);
+  }
+
+  @ReactMethod
   public void addListener(String eventName) {
     mListenerCount += 1;
   }
@@ -210,7 +223,18 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
 
   @Override
   public void onScreenshotReady(@NonNull Bitmap bitmap) {
-
+    boolean success = false;
+    try {
+      FileOutputStream fos = new FileOutputStream(mScreenshotPath, false);
+      if (mScreenshotPath.endsWith(".jpg") || mScreenshotPath.endsWith(".jpeg")) {
+        success = bitmap.compress(CompressFormat.JPEG, 70, fos);
+      } else {
+        success = bitmap.compress(CompressFormat.PNG, 0, fos);
+      }
+    } catch (FileNotFoundException e) {
+      Log.e(TAG, "Failed to write screenshot file", e);
+    }
+    sendEvent("onScreenshotReady", success);
   }
 
   @Override
