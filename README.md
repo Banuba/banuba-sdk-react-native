@@ -37,7 +37,7 @@ You may also use `npm` to run the sample. See [example/README.md](example/README
 
 This is how to integrate Banuba SDK into existing React Native app. You still need a Client Token for this.
 
-1. Add `@banuba/react-native` [dependency](https://www.npmjs.com/package/@banuba/react-native): `npm install @banuba/react-native`.
+1. Add `@banuba/react-native` [dependency](https://www.npmjs.com/package/@banuba/react-native): `yarn add @banuba/react-native`.
 2. *For iOS*: add a link to the native Banuba SDK into [`ios/Podfile`](example/ios/Podfile#L13): `source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'`.
     *For Android*: add our [maven repository](example/android/build.gradle#L13).
 3. Add code from [`example/src/App.tsx`](example/src/App.tsx) into your app.
