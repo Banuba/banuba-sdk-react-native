@@ -1,5 +1,5 @@
 PODS:
-  - banuba-sdk-react-native (0.3.1):
+  - banuba-sdk-react-native (0.4.0):
     - BanubaSdk
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1441,7 +1441,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  banuba-sdk-react-native: 99a2bcf7a4acaecc179b5a9a065103ac6fe31f0d
+  banuba-sdk-react-native: 327fa7017e54a522b178cbcd9572421d8bbc522f
   BanubaSdk: 96bcda485e6aa22e0b6ef013a717f8e6bf1066e1
   BNBAcneEyebagsRemoval: a053c8a2e256627faf43e6691432b4e56235bb9f
   BNBBackground: 72bf368c146ac0f4f193acd23b6b975013b702b4
