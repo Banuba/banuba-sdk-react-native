@@ -25,6 +25,8 @@ class BanubaSdkManager: RCTEventEmitter {
     
     @objc
     func attachView(_ tag: NSNumber) {
+        banubaSdkManager.destroyEffectPlayer()
+    
         banubaSdkManager.setup(configuration: EffectPlayerConfiguration())
         
         var view: BNBSdkApi.EffectPlayerView? = nil
