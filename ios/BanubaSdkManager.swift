@@ -75,10 +75,12 @@ class BanubaSdkManager: RCTEventEmitter {
     @objc
     func startVideoRecording(_ path: String) {
         banubaSdkManager.output?.startRecordingWithURL(URL(fileURLWithPath: path), delegate: self)
+        banubaSdkManager.input.startAudioCapturing()
     }
     @objc
     func stopVideoRecording() {
         banubaSdkManager.output?.stopRecording()
+        
     }
     @objc
     func pauseVideoRecording() {
@@ -154,6 +156,7 @@ extension BanubaSdkManager : VideoRecorderDelegate
         if hasListeners {
             self.sendEvent(withName: recordingFinishedEvent, body: success)
         }
+        banubaSdkManager.input.stopAudioCapturing()
     }
     
     func onRecordingProgress(duration: TimeInterval) {
