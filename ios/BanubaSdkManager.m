@@ -7,6 +7,8 @@ RCT_EXTERN_METHOD(initialize:(NSArray<NSString*>*) resourcePath clientTokenStrin
 RCT_EXTERN_METHOD(deinitialize)
 RCT_EXTERN_METHOD(openCamera)
 RCT_EXTERN_METHOD(closeCamera)
+RCT_EXTERN_METHOD(setCameraFacing:(BOOL)) 
+RCT_EXTERN_METHOD(enableFlashlight:(BOOL))
 RCT_EXTERN_METHOD(attachView:(nonnull NSNumber*))
 RCT_EXTERN_METHOD(loadEffect:(NSString*))
 RCT_EXTERN_METHOD(startPlayer)

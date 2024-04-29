@@ -25,6 +25,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEm
 import com.facebook.react.modules.core.PermissionAwareActivity;
 import com.facebook.react.modules.core.PermissionListener;
 import com.facebook.react.uimanager.UIManagerModule;
+import com.banuba.sdk.camera.Facing;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -91,6 +92,22 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
     } else {
       getSdkManager().openCamera();
     }
+  }
+
+  @ReactMethod
+  public void setCameraFacing(boolean front)
+  {
+    if (front) {
+      getSdkManager().setCameraFacing(Facing.FRONT);
+    } else {
+      getSdkManager().setCameraFacing(Facing.BACK, false);
+    }
+  }
+
+  @ReactMethod
+  public void enableFlashlight(boolean enabled)
+  {
+    getSdkManager().setFlashlightEnabled(enabled);
   }
 
   @ReactMethod

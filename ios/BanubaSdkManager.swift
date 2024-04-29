@@ -1,4 +1,5 @@
 import BNBSdkApi
+import AVFoundation
 
 let recordingStatusEvent = "onVideoRecordingStatus"
 let recordingFinishedEvent = "onVideoRecordingFinished"
@@ -50,6 +51,18 @@ class BanubaSdkManager: RCTEventEmitter {
     @objc
     func closeCamera() {
         banubaSdkManager.input.stopCamera()
+    }
+    
+    @objc
+    func setCameraFacing(_ front: Bool) {
+        let cameraSessionType: CameraSessionType = front ? .FrontCameraSession : .BackCameraSession
+        banubaSdkManager.input.switchCamera(to: cameraSessionType, completion: {})
+    }
+    
+    @objc
+    func enableFlashlight(_ enabled: Bool) {
+        _ = banubaSdkManager.input.setTorch(
+            mode: enabled ? AVCaptureDevice.TorchMode.on : AVCaptureDevice.TorchMode.off)
     }
     
     @objc 

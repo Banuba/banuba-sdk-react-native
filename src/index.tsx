@@ -23,6 +23,16 @@ interface BanubaSdkManagerI {
 
   closeCamera(): void;
 
+  /**
+   * Change camera facing.
+   */
+  setCameraFacing(argFront: boolean): void;
+
+  /**
+   * Enables flashlight. Available only for back camera facing.
+   */
+  enableFlashlight(argEnabled: boolean): void;
+
   startPlayer(): void;
 
   stopPlayer(): void;
