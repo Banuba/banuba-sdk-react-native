@@ -106,8 +106,9 @@ dependencies {
   // For < 0.71, this will be from the local maven repo
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
-  implementation "com.banuba.sdk:banuba_sdk:1+"
   implementation "com.facebook.react:react-native:+"
+
+  implementation "com.banuba.sdk:sdk_api:$project.bnb_sdk_version"
 }
 
 if (isNewArchitectureEnabled()) {

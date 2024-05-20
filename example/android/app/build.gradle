@@ -127,6 +127,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation "com.banuba.sdk:face_tracker:$project.bnb_sdk_version"
+    implementation "com.banuba.sdk:background:$project.bnb_sdk_version"
 }
 
 task copyEffects {

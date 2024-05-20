@@ -38,8 +38,10 @@ You may also use `npm` to run the sample. See [example/README.md](example/README
 This is how to integrate Banuba SDK into existing React Native app. You still need a Client Token for this.
 
 1. Add `@banuba/react-native` [dependency](https://www.npmjs.com/package/@banuba/react-native): `yarn add @banuba/react-native`.
-2. *For iOS*: add a link to the native Banuba SDK into [`ios/Podfile`](example/ios/Podfile#L13): `source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'`.
-    *For Android*: add our [maven repository](example/android/build.gradle#L13).
+2. *For iOS*: add a link to the native Banuba SDK into [`ios/Podfile`](example/ios/Podfile#L13): `source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'`,
+add desired `$bnb_sdk_version = '~> 1.13.0`, list Banuba SDK [packages you need](https://docs.banuba.com/face-ar-sdk-v1/core/tutorials/using_packages/).
+*For Android*: add our [maven repository](example/android/build.gradle#L13), define `ext.bnb_sdk_version`. 
+In [`example/android/app/build.gradle`](example/android/app/build.gradle) list [the packages you need](https://docs.banuba.com/face-ar-sdk-v1/core/tutorials/using_packages/).
 3. Add code from [`example/src/App.tsx`](example/src/App.tsx) into your app.
 4. Add `effects` folder into your project. Link it with your app
     1. iOS: just link effects folder into XCode project (`File` -> `Add Files to ...`).

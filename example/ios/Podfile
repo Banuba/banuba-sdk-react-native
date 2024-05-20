@@ -12,6 +12,7 @@ prepare_react_native_project!
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'
+$bnb_sdk_version = '~> 1.13.0'
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
 # because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
@@ -34,6 +35,9 @@ target 'ReactNativeExample' do
   config = use_native_modules!
 
   pod 'RNFS', :path => '../../node_modules/react-native-fs'
+
+  pod 'BNBBackground', $bnb_sdk_version
+  pod 'BNBFaceTracker', $bnb_sdk_version
 
   use_react_native!(
     :path => config[:reactNativePath],

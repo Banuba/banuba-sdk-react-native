@@ -1,116 +1,22 @@
 PODS:
-  - banuba-sdk-react-native (0.4.3):
-    - BanubaSdk
+  - banuba-sdk-react-native (1.0.0):
+    - BNBSdkApi (~> 1.13.0)
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - BanubaSdk (1.12.0):
-    - BNBAcneEyebagsRemoval (= 1.12.0)
-    - BNBBackground (= 1.12.0)
-    - BNBBody (= 1.12.0)
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBEyes (= 1.12.0)
-    - BNBFaceAttributes (= 1.12.0)
-    - BNBFaceMatch (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBFaceTrackerLite (= 1.12.0)
-    - BNBHair (= 1.12.0)
-    - BNBHands (= 1.12.0)
-    - BNBLips (= 1.12.0)
-    - BNBMakeup (= 1.12.0)
-    - BNBNeurobeautyMakeup (= 1.12.0)
-    - BNBOcclusion (= 1.12.0)
-    - BNBPoseEstimation (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkApi (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-    - BNBSkin (= 1.12.0)
-    - BNBVisualClip (= 1.12.0)
-    - BNBWatch (= 1.12.0)
-  - BNBAcneEyebagsRemoval (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBBackground (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBBody (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBEffectPlayer (1.12.0)
-  - BNBEyes (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBFaceAttributes (1.12.0):
-    - BNBEyes (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBHair (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-    - BNBSkin (= 1.12.0)
-  - BNBFaceMatch (1.12.0):
-    - BNBFaceTracker (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBFaceTracker (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBFaceTrackerLite (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBHair (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBHands (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBLips (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBMakeup (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBLips (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-    - BNBSkin (= 1.12.0)
-  - BNBNeurobeautyMakeup (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBOcclusion (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBFaceTracker (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBPoseEstimation (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBScripting (1.12.0)
-  - BNBSdkApi (1.12.0):
-    - BNBSdkCore (= 1.12.0)
-  - BNBSdkCore (1.12.0)
-  - BNBSkin (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
-  - BNBVisualClip (1.12.0):
-    - BNBSdkCore (= 1.12.0)
-  - BNBWatch (1.12.0):
-    - BNBEffectPlayer (= 1.12.0)
-    - BNBScripting (= 1.12.0)
-    - BNBSdkCore (= 1.12.0)
+  - BNBBackground (1.13.0):
+    - BNBEffectPlayer (= 1.13.0)
+    - BNBScripting (= 1.13.0)
+    - BNBSdkCore (= 1.13.0)
+  - BNBEffectPlayer (1.13.0)
+  - BNBFaceTracker (1.13.0):
+    - BNBEffectPlayer (= 1.13.0)
+    - BNBScripting (= 1.13.0)
+    - BNBSdkCore (= 1.13.0)
+  - BNBScripting (1.13.0)
+  - BNBSdkApi (1.13.0):
+    - BNBSdkCore (= 1.13.0)
+  - BNBSdkCore (1.13.0)
   - boost (1.83.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -1230,6 +1136,8 @@ PODS:
 
 DEPENDENCIES:
   - banuba-sdk-react-native (from `../..`)
+  - BNBBackground (~> 1.13.0)
+  - BNBFaceTracker (~> 1.13.0)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -1321,29 +1229,12 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SocketRocket
   https://github.com/sdk-banuba/banuba-sdk-podspecs.git:
-    - BanubaSdk
-    - BNBAcneEyebagsRemoval
     - BNBBackground
-    - BNBBody
     - BNBEffectPlayer
-    - BNBEyes
-    - BNBFaceAttributes
-    - BNBFaceMatch
     - BNBFaceTracker
-    - BNBFaceTrackerLite
-    - BNBHair
-    - BNBHands
-    - BNBLips
-    - BNBMakeup
-    - BNBNeurobeautyMakeup
-    - BNBOcclusion
-    - BNBPoseEstimation
     - BNBScripting
     - BNBSdkApi
     - BNBSdkCore
-    - BNBSkin
-    - BNBVisualClip
-    - BNBWatch
 
 EXTERNAL SOURCES:
   banuba-sdk-react-native:
@@ -1449,30 +1340,13 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  banuba-sdk-react-native: facc740df0ce5c62c1e334784bf14dc77a0981de
-  BanubaSdk: 2dd898094ece9c7941dad0b5b8ec46157a82ed80
-  BNBAcneEyebagsRemoval: 6ea1ebe2014ad078cfc4ff3c5d2b8b4ffc304547
-  BNBBackground: 63273588d277006a6a395b0ddd12027413f4554a
-  BNBBody: 6431f81622c02026ab966ee49a767cfa56403542
-  BNBEffectPlayer: 02f868c31b2490bcc866369037dfe372eb84ba3f
-  BNBEyes: 91eaabe0132f551d2a07884cc6c856598d599baf
-  BNBFaceAttributes: 1a90027d9c912283662cbc4000f23704bb67d643
-  BNBFaceMatch: 61b0dceb3879d491b7612c6b7e124c52fee72852
-  BNBFaceTracker: b816bb9a891d0eeeb5a9a960c6b9f15b69bbd289
-  BNBFaceTrackerLite: 206525783aed131dbbd129bae3903f18be44a069
-  BNBHair: f0665fe9bf5cddf636eb4e7e8863b95e5fde582b
-  BNBHands: fc2480dd31cb9246cdddd2d0091b27dd1311a476
-  BNBLips: ff52bdffa4720cfa56c49e48cd08188cdea462fb
-  BNBMakeup: a1d7fdb8d4d91e1a5e4519f7a6742b8e55ffd36a
-  BNBNeurobeautyMakeup: a26a9f50aff1893e739e635a8d2b1bd2c1429e85
-  BNBOcclusion: 9bcab02e299a3f6207aa4235cda94da48508b8d3
-  BNBPoseEstimation: 682069a96d9b48669b0d5a8e5de6da64ffd3573b
-  BNBScripting: bff4182fcc3bb661ba2d0cd1e2c4da8ba0f2c2be
-  BNBSdkApi: 56dcbd64b320244b021790da9d3c37309f5123ab
-  BNBSdkCore: ab6addce9d46aa0e30c3b8d204ffa96816e42c24
-  BNBSkin: 86601aa64aa51e3664ab912f37158d254052cd98
-  BNBVisualClip: 70f4ab0ab209ea96a0185a1a91148e852e35b558
-  BNBWatch: b94bfc54d1ba9410bdbf99cf5a6eee1f59c452b5
+  banuba-sdk-react-native: d7803b68225340e73bd1a02c033bc962466aa57d
+  BNBBackground: f2c3ccf8c7f131a4c6705312dde10f99df9aed20
+  BNBEffectPlayer: 4ca38373a5ef74333538b507e3ee02b2edea9672
+  BNBFaceTracker: 587e076fa32848c01bea1bbdb5c37cb2430644ad
+  BNBScripting: 837c71d7f8ffcab39956b428d3c634b2b6248107
+  BNBSdkApi: 2f69f7ad0fe07159168d4f0f8bc15f15bb576ef2
+  BNBSdkCore: 6356367d5aaeb49675420228b57c010747f96acf
   boost: 26fad476bfa736552bbfa698a06cc530475c1505
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
@@ -1536,6 +1410,6 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 4f53dc50008d626fa679c7a1cb4bed898f8c0bde
 
-PODFILE CHECKSUM: c0c68fb49fc68e8c50b40968cbf7f1a0f41bb28d
+PODFILE CHECKSUM: 9a7dd645a957a0cc47d09a0cfda14aa6b252ce9c
 
 COCOAPODS: 1.15.2
