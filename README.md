@@ -12,7 +12,7 @@ video conferencing, etc.). The package includes:
 * Screen recording, take screenshot
 * etc.
 
-## [Requirements](https://docs.banuba.com/face-ar-sdk-v1/overview/system_requirements)
+## [Requirements](https://docs.banuba.com/far-sdk/tutorials/capabilities/system_requirements)
 
 ## Usage
 
@@ -20,7 +20,7 @@ video conferencing, etc.). The package includes:
 Before you commit to a license, you are free to test all the features of the SDK for free. To start it, [send us a message](https://www.banuba.com/facear-sdk/face-filters#form).  
 
 
-Feel free to [contact us](https://docs.banuba.com/face-ar-sdk-v1/support) if you have any questions.
+Feel free to [contact us](https://docs.banuba.com/far-sdk/support) if you have any questions.
 
 ### Getting Started
 
@@ -39,9 +39,9 @@ This is how to integrate Banuba SDK into existing React Native app. You still ne
 
 1. Add `@banuba/react-native` [dependency](https://www.npmjs.com/package/@banuba/react-native): `yarn add @banuba/react-native`.
 2. *For iOS*: add a link to the native Banuba SDK into [`ios/Podfile`](example/ios/Podfile#L13): `source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'`,
-add desired `$bnb_sdk_version = '~> 1.13.0`, list Banuba SDK [packages you need](https://docs.banuba.com/face-ar-sdk-v1/core/tutorials/using_packages/).
+add desired `$bnb_sdk_version = '~> 1.13.0`, list Banuba SDK [packages you need](https://docs.banuba.com/far-sdk/tutorials/development/installation).
 *For Android*: add our [maven repository](example/android/build.gradle#L13), define `ext.bnb_sdk_version`. 
-In [`example/android/app/build.gradle`](example/android/app/build.gradle) list [the packages you need](https://docs.banuba.com/face-ar-sdk-v1/core/tutorials/using_packages/).
+In [`example/android/app/build.gradle`](example/android/app/build.gradle) list [the packages you need](https://docs.banuba.com/far-sdk/tutorials/development/installation).
 3. Add code from [`example/src/App.tsx`](example/src/App.tsx) into your app.
 4. Add `effects` folder into your project. Link it with your app
     1. iOS: just link effects folder into XCode project (`File` -> `Add Files to ...`).
