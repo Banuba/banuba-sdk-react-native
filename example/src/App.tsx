@@ -63,7 +63,8 @@ export default class App extends Component {
   onPressVideoRecording = () => {
     if (!this.recording) {
       BanubaSdkManager.startVideoRecording(
-        RNFS.DocumentDirectoryPath + '/video.mp4'
+        RNFS.DocumentDirectoryPath + '/video.mp4',
+        false
       );
       this.setState({ recodButtonTitle: 'Stop recording' });
     } else {

@@ -48,9 +48,10 @@ interface BanubaSdkManagerI {
   /**
    * Start screen frames capture.
    * @param path file to place the recording (will be in MP4 format)
+   * @param mirrorFrontCamera if to mirror video in final file for front camera.
    * @see stopVideoRecording, pauseVideoRecording
    */
-  startVideoRecording(path: string): void;
+  startVideoRecording(path: string, mirrorFrontCamera: boolean): void;
 
   /**
    * Stop screen frames capture. You will recieve

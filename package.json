@@ -1,6 +1,6 @@
 {
   "name": "@banuba/react-native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Banuba SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -55,7 +55,7 @@
   "author": "Banuba <support@banuba.com> (https://github.com/Banuba)",
   "license": "MIT",
   "bugs": {
-    "url": "https://docs.banuba.com/face-ar-sdk-v1/support"
+    "url": "https://docs.banuba.com/far-sdk/support"
   },
   "homepage": "https://github.com/Banuba/banuba-sdk-react-native#readme",
   "publishConfig": {

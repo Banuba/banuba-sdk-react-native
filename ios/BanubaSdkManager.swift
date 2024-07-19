@@ -86,8 +86,18 @@ class BanubaSdkManager: RCTEventEmitter {
     }
     
     @objc
-    func startVideoRecording(_ path: String) {
-        banubaSdkManager.output?.startRecordingWithURL(URL(fileURLWithPath: path), delegate: self)
+    func startVideoRecording(_ path: String, mirrorFrontCamera: Bool) {
+        let outputConfig = OutputConfiguration(
+            applyWatermark: true,
+            adjustDeviceOrientation: false,
+            mirrorFrontCamera: mirrorFrontCamera
+        )
+        banubaSdkManager.output?.startRecordingWithURL(
+            URL(fileURLWithPath: path), 
+            configuration: outputConfig,
+            progressTimeInterval: 0,
+            delegate: self
+        )
         banubaSdkManager.input.startAudioCapturing()
     }
     @objc
