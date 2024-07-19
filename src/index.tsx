@@ -49,6 +49,8 @@ interface BanubaSdkManagerI {
    * Start screen frames capture.
    * @param path file to place the recording (will be in MP4 format)
    * @param mirrorFrontCamera if to mirror video in final file for front camera.
+   * This parameter affects iOS only. `false` is recommended to much Android
+   * behaviour. `true` will behave similar to default iOS Camera app.
    * @see stopVideoRecording, pauseVideoRecording
    */
   startVideoRecording(path: string, mirrorFrontCamera: boolean): void;

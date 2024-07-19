@@ -134,7 +134,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   @ReactMethod
-  public void startVideoRecording(@NonNull String path) {
+  public void startVideoRecording(@NonNull String path, boolean mirrorFrontCamera) {
     getSdkManager().setCallback(this);
     getSdkManager().startVideoRecording(path, true, null, 1.f);
   }
