@@ -14,6 +14,7 @@ RCT_EXTERN_METHOD(loadEffect:(NSString*))
 RCT_EXTERN_METHOD(startPlayer)
 RCT_EXTERN_METHOD(stopPlayer)
 RCT_EXTERN_METHOD(evalJs:(NSString*))
+RCT_EXTERN_METHOD(reloadConfig:(NSString*))
 
 RCT_EXTERN_METHOD(startVideoRecording:(NSString*) path mirrorFrontCamera:(BOOL))
 RCT_EXTERN_METHOD(stopVideoRecording)
