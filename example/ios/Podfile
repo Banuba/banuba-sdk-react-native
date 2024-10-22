@@ -23,8 +23,6 @@ end
 target 'ReactNativeExample' do
   config = use_native_modules!
 
-  pod 'RNFS', :path => '../../node_modules/react-native-fs'
-
   pod 'BNBBackground', $bnb_sdk_version
   pod 'BNBFaceTracker', $bnb_sdk_version
 
