@@ -46,6 +46,11 @@ interface BanubaSdkManagerI {
   evalJs(script: string): void;
 
   /**
+   * Reload current effect config from the string provided.
+   */
+  reloadConfig(script: string): void;
+
+  /**
    * Start screen frames capture.
    * @param path file to place the recording (will be in MP4 format)
    * @param mirrorFrontCamera if to mirror video in final file for front camera.

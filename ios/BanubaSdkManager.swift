@@ -84,6 +84,11 @@ class BanubaSdkManager: RCTEventEmitter {
     func evalJs(_ script: String) {
         banubaSdkManager.effectManager()?.current()?.evalJs(script, resultCallback: nil)
     }
+
+    @objc
+    func reloadConfig(_ script: String) {
+        banubaSdkManager.effectManager()?.reloadConfig(script)
+    }
     
     @objc
     func startVideoRecording(_ path: String, mirrorFrontCamera: Bool) {
