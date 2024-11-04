@@ -15,15 +15,8 @@
 
 ## Requirements
 
-### Android
-
-* Android OS 6.0
-* API level 23
-* OpenGL ES3.0 and higher
-
-### IOS
-
-* IOS 13.0
+* Android: API level 23(Android 6) or higher
+* IOS: 13.0 or higher
 
 ## Usage
 
@@ -53,14 +46,32 @@ Please follow our [Integration Guide](./mdDocs/integration_guide.md) to complete
 
 ### Launch
 
-1. Clone the repository, ensure that you have setted up [React Native CLI development environment](https://reactnative.dev/docs/environment-setup).
-2. Copy and Paste your Client Token into appropriate section of [example/src/App.tsx](example/src/App.tsx#L18).
-3. Run `yarn` command. This will install all required dependences.
-4. (iOS only) Go to `example/ios` directory and run `pod install`. Return back to root. This will install all required iOS dependencies.
-5. Connect a device and run `yarn example ios` or `yarn example android`. Alternatively you may may open XCode or Android Studio projects from `example/ios` and `example/android` directories.
+1. Set up [React Native CLI development environment](https://reactnative.dev/docs/environment-setup).
+2. Clone the repository.
+3. Copy and Paste your Client Token into appropriate section of [example/src/App.tsx](example/src/App.tsx#L18).
+4. Run `yarn` command in the root repository. This will install all required dependencies.
+
+#### IOS Specific
+
+* Go to `example/ios` directory and run `pod install`.This will install all required iOS dependencies.
+* Return back to root.
+
+#### Run the Example
+
+* Connect a device and run `yarn example ios` or `yarn example android`.
+* Alternatively, open XCode or Android Studio projects from the respective directories.
 
 You may also use `npm` to run the sample. See [example/README.md](example/README.md).
 
 ### Useful Docs
 
 * List of [Banuba SDK packages](https://docs.banuba.com/far-sdk/tutorials/development/installation)
+
+### Dependencies
+
+||Version|
+|:-:|:-:|
+|Yarn|3.6.1|
+|React Native|0.75.4|
+|Android|6.0+|
+|IOS|13.0|

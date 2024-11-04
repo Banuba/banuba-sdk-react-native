@@ -1,5 +1,12 @@
 # Integration Guide
 
+1. [Configuration](#configuration)
+    - [Android](#android)
+    - [IOS](#ios)
+2. [Usage](#usage)
+3. [Add AR Effects](#add-ar-effects)
+4. [Additional Methods](#additional-methods)
+
 ## Configuration
 
 ### Android
