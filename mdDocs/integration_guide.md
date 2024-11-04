@@ -75,9 +75,9 @@ BanubaSdkManager.initialize([], 'Client token');
 
     ...
 
-componentDidMount() {
-    BanubaSdkManager.attachView(this.ep.current._nativeTag);
-}
+    componentDidMount() {
+        BanubaSdkManager.attachView(this.ep.current._nativeTag);
+    }
 
     ...
 
@@ -88,14 +88,14 @@ componentDidMount() {
     }
 ```
 
-3. Start player: 
+3. Start player:
 
 ```typescript
     BanubaSdkManager.openCamera();
     BanubaSdkManager.startPlayer();
 ```
 
-4. Load and apply Effect: 
+4. Load and apply Effect:
 
 ```typescript
     BanubaSdkManager.loadEffect('path to the effect');
