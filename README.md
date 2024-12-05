@@ -18,31 +18,17 @@
 * Android: API level 23(Android 6) or higher
 * IOS: 13.0 or higher
 
-## Usage
+## Integration guide
+
+Please follow our [Integration Guide](./mdDocs/integration_guide.md) to complete full integration.
+
+## Usage Example project
 
 ### License
 
 Before you commit to a license, you are free to test all the features of the SDK for free. The trial period lasts 14 days. Send us a message to start the [Face AR trial](https://www.banuba.com/facear-sdk/face-filters#form).
 
 Feel free to [contact us](https://www.banuba.com/support) if you have any questions.
-
-### Installation
-
-Run in Terminal to install Banuba Face AR React Native plugin:
-
-```
-npm install @banuba/react-native
-```
-
-or
-
-```
-yarn add @banuba/react-native
-```
-
-### Integration guide
-
-Please follow our [Integration Guide](./mdDocs/integration_guide.md) to complete full integration.
 
 ### Launch
 

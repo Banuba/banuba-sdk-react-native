@@ -1,11 +1,26 @@
 # Integration Guide
 
-1. [Configuration](#configuration)
+1. [Installation](#installation)
+2. [Configuration](#configuration)
     - [Android](#android)
     - [IOS](#ios)
-2. [Usage](#usage)
-3. [Add AR Effects](#add-ar-effects)
-4. [Additional Methods](#additional-methods)
+3. [Usage](#usage)
+4. [Add AR Effects](#add-ar-effects)
+5. [Additional Methods](#additional-methods)
+
+## Installation
+
+Run in Terminal to install Banuba Face AR React Native plugin:
+
+```
+npm install @banuba/react-native
+```
+
+or
+
+```
+yarn add @banuba/react-native
+```
 
 ## Configuration
 
