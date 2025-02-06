@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Banuba Face AR Plugin](https://www.banuba.com/facear-sdk/face-filters) is intended to provide a suite of augmented reality features applicable on photos and live video feed (live streaming, video conferencing, etc.). The package includes:
+[Banuba Face AR Plugin](https://docs.banuba.com/far-sdk/tutorials/development/basic_integration?platform=reactnative) is intended to provide a suite of augmented reality features applicable on photos and live video feed (live streaming, video conferencing, etc.). The package includes:
 
 * Face and hand tracking
 * 3D face filters
