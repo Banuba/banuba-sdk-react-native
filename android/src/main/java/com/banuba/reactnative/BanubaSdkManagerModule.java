@@ -111,6 +111,12 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   @ReactMethod
+  public void setCameraZoom(float factor) 
+  {
+    getSdkManager().setCameraZoom(factor);
+  }
+
+  @ReactMethod
   public void startPlayer() {
     getSdkManager().effectPlayerPlay();
   }
@@ -235,7 +241,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
 
   @Override
   public void onCameraOpenError(@NonNull Throwable throwable) {
-
+    Log.e(TAG, "Failed to open camera", throwable);
   }
 
   @Override

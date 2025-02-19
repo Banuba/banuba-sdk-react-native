@@ -29,6 +29,13 @@ interface BanubaSdkManagerI {
   setCameraFacing(argFront: boolean): void;
 
   /**
+   * Set camera zoom.
+   * `factor` a multiplier. For example, a value of 2.0 doubles the size of an 
+   * image. Value 1.0 (minimum alowed) means "no zoom".
+   */
+  setCameraZoom(factor: number): void;
+
+  /**
    * Enables flashlight. Available only for back camera facing.
    */
   enableFlashlight(argEnabled: boolean): void;

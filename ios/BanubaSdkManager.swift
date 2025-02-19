@@ -58,6 +58,11 @@ class BanubaSdkManager: RCTEventEmitter {
         let cameraSessionType: CameraSessionType = front ? .FrontCameraSession : .BackCameraSession
         banubaSdkManager.input.switchCamera(to: cameraSessionType, completion: {})
     }
+
+    @objc
+    func setCameraZoom(_ factor: Float) {
+        _ = banubaSdkManager.input.setZoomFactor(factor)
+    }
     
     @objc
     func enableFlashlight(_ enabled: Bool) {
