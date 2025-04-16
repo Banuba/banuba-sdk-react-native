@@ -23,6 +23,7 @@ RCT_EXTERN_METHOD(pauseVideoRecording)
 RCT_EXTERN_METHOD(resumeVideoRecording)
 
 RCT_EXTERN_METHOD(takeScreenshot:(NSString*))
+RCT_EXTERN_METHOD(processImage:(NSString*))
 
 + (BOOL)requiresMainQueueSetup
 {

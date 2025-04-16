@@ -12,7 +12,7 @@ prepare_react_native_project!
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'
-$bnb_sdk_version = '~> 1.15.0'
+$bnb_sdk_version = '~> 1.17.0'
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -25,6 +25,7 @@ target 'ReactNativeExample' do
 
   pod 'BNBBackground', $bnb_sdk_version
   pod 'BNBFaceTracker', $bnb_sdk_version
+  pod 'BanubaSdk', $bnb_sdk_version
 
   use_react_native!(
     :path => config[:reactNativePath],

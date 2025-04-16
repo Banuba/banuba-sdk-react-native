@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.util.Size;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +19,9 @@ import com.banuba.sdk.manager.BanubaSdkManager;
 import com.banuba.sdk.manager.BanubaSdkTouchListener;
 import com.banuba.sdk.manager.IEventCallback;
 import com.banuba.sdk.types.Data;
+import com.banuba.sdk.types.FullImageData;
+import com.banuba.sdk.types.PixelFormat;
+import com.banuba.sdk.effect_player.CameraOrientation;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -29,6 +34,15 @@ import com.banuba.sdk.camera.Facing;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+
+import java.io.File;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.RunnableFuture;
+import java.util.concurrent.TimeUnit;
+
 
 class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements PermissionListener, IEventCallback {
   private static final String TAG = "BanubaSdkManagerModule";
@@ -111,7 +125,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   @ReactMethod
-  public void setCameraZoom(float factor) 
+  public void setCameraZoom(float factor)
   {
     getSdkManager().setCameraZoom(factor);
   }
@@ -140,8 +154,92 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   }
 
   @ReactMethod
-  public void reloadConfig(@NonNull String script) {
-    getSdkManager().getEffectPlayer().effectManager().reloadConfig(script);
+  public void processImage(final String path) {
+    final ReactApplicationContext reactContext = getReactApplicationContext();
+
+    final File destFile = new File(reactContext.getCacheDir(), "tmp.png");
+
+    final String sourceFilePath = path.startsWith("file://")
+      ? path.substring("file://".length())
+      : path;
+
+    if (!new File(sourceFilePath).exists()) {
+      sendEvent("processImageEvent", "Error while getting image from the path");
+      return;
+    }
+
+    Log.w(TAG, "processImage: source file exists = " + new File(sourceFilePath).exists());
+
+    final Callable<Bitmap> callable = new Callable<Bitmap>() {
+      @Override
+      public Bitmap call() throws Exception {
+        final long start = System.currentTimeMillis();
+
+        final Bitmap sourceBitmap = BitmapFactory.decodeFile(sourceFilePath);
+        if (sourceBitmap == null) {
+          throw new Exception("Error while processing image");
+        }
+        final FullImageData image = new FullImageData(sourceBitmap,
+          new FullImageData.Orientation(CameraOrientation.DEG_0));
+
+        Data processed = null;
+        try {
+          processed = getSdkManager().getEffectPlayer().processImage(
+            image,
+            PixelFormat.RGBA
+          );
+
+          final int width;
+          final int height;
+          final CameraOrientation cameraOrientation = image.getOrientation().getCameraOrientation();
+          final Size size = image.getSize();
+
+          if (cameraOrientation == CameraOrientation.DEG_90 ||
+            cameraOrientation == CameraOrientation.DEG_270) {
+            width = size.getHeight();
+            height = size.getWidth();
+          } else {
+            width = size.getWidth();
+            height = size.getHeight();
+          }
+
+          final Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+          result.copyPixelsFromBuffer(processed.getData());
+
+          Log.d(TAG, "Time to process image = " + (System.currentTimeMillis() - start) + " ms");
+          return result;
+
+        } finally {
+          if (processed != null) {
+            processed.close();
+          }
+        }
+      }
+    };
+
+    final RunnableFuture<Bitmap> future = new FutureTask<>(callable);
+    getSdkManager().runOnRenderThread(future);
+    try {
+      final Bitmap processedBitmap = future.get(30, TimeUnit.SECONDS);
+
+      if (destFile.exists()) {
+        destFile.delete();
+      }
+      FileOutputStream fos = new FileOutputStream(destFile);
+      boolean saved = processedBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+      fos.flush();
+      fos.close();
+
+      if (saved) {
+        sendEvent("processImageEvent", destFile.getAbsolutePath());
+        Log.d(TAG, "Image saved at: " + destFile.getAbsolutePath());
+      } else {
+        sendEvent("processImageEvent", "Error while saving image");
+      }
+    } catch (Exception e) {
+      Log.w(TAG, "Cannot process image!", e);
+      sendEvent("processImageEvent", "Error while processing image");
+    }
   }
 
   @ReactMethod
