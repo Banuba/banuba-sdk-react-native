@@ -12,7 +12,7 @@ prepare_react_native_project!
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'
-$bnb_sdk_version = '~> 1.15.0'
+$bnb_sdk_version = '~> 1.17.0'
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil

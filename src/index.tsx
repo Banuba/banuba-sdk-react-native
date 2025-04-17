@@ -30,7 +30,7 @@ interface BanubaSdkManagerI {
 
   /**
    * Set camera zoom.
-   * `factor` a multiplier. For example, a value of 2.0 doubles the size of an 
+   * `factor` a multiplier. For example, a value of 2.0 doubles the size of an
    * image. Value 1.0 (minimum alowed) means "no zoom".
    */
   setCameraZoom(factor: number): void;
@@ -94,6 +94,11 @@ interface BanubaSdkManagerI {
    * format is defined by path extension (`.jpeg` or .`png`)
    */
   takeScreenshot(path: string): void;
+
+  /**
+   * Processes image with applied effect
+   */
+  processImage(path: string): void;
 }
 
 const LINKING_ERROR =
