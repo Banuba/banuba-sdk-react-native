@@ -25,7 +25,6 @@ target 'ReactNativeExample' do
 
   pod 'BNBBackground', $bnb_sdk_version
   pod 'BNBFaceTracker', $bnb_sdk_version
-  pod 'BanubaSdk', $bnb_sdk_version
 
   use_react_native!(
     :path => config[:reactNativePath],

@@ -157,7 +157,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
   public void processImage(final String path) {
     final ReactApplicationContext reactContext = getReactApplicationContext();
 
-    final File destFile = new File(reactContext.getCacheDir(), "tmp.png");
+    final File destFile = new File(reactContext.getCacheDir(), "processed_image.png");
 
     final String sourceFilePath = path.startsWith("file://")
       ? path.substring("file://".length())
@@ -168,7 +168,7 @@ class BanubaSdkManagerModule extends ReactContextBaseJavaModule implements Permi
       return;
     }
 
-    Log.w(TAG, "processImage: source file exists = " + new File(sourceFilePath).exists());
+    Log.d(TAG, "processImage: source file exists = " + new File(sourceFilePath).exists());
 
     final Callable<Bitmap> callable = new Callable<Bitmap>() {
       @Override

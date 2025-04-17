@@ -21,83 +21,19 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - BanubaSdk (1.17.0):
-    - BNBAcneEyebagsRemoval (= 1.17.0)
-    - BNBBackground (= 1.17.0)
-    - BNBBody (= 1.17.0)
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBEyes (= 1.17.0)
-    - BNBFaceAttributes (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBHair (= 1.17.0)
-    - BNBHands (= 1.17.0)
-    - BNBLightSourceDetector (= 1.17.0)
-    - BNBLips (= 1.17.0)
-    - BNBMakeup (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkApi (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-    - BNBSkin (= 1.17.0)
-  - BNBAcneEyebagsRemoval (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
   - BNBBackground (1.17.0):
     - BNBEffectPlayer (= 1.17.0)
     - BNBScripting (= 1.17.0)
     - BNBSdkCore (= 1.17.0)
-  - BNBBody (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
   - BNBEffectPlayer (1.17.0)
-  - BNBEyes (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-  - BNBFaceAttributes (1.17.0):
-    - BNBEyes (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBHair (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-    - BNBSkin (= 1.17.0)
   - BNBFaceTracker (1.17.0):
     - BNBEffectPlayer (= 1.17.0)
     - BNBScripting (= 1.17.0)
     - BNBSdkCore (= 1.17.0)
-  - BNBHair (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-  - BNBHands (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-  - BNBLightSourceDetector (1.17.0):
-    - BNBFaceTracker (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-  - BNBLips (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-  - BNBMakeup (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBFaceTracker (= 1.17.0)
-    - BNBLips (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
-    - BNBSkin (= 1.17.0)
   - BNBScripting (1.17.0)
   - BNBSdkApi (1.17.0):
     - BNBSdkCore (= 1.17.0)
   - BNBSdkCore (1.17.0)
-  - BNBSkin (1.17.0):
-    - BNBEffectPlayer (= 1.17.0)
-    - BNBScripting (= 1.17.0)
-    - BNBSdkCore (= 1.17.0)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.75.4)
@@ -1624,7 +1560,6 @@ PODS:
 
 DEPENDENCIES:
   - banuba-sdk-react-native (from `../..`)
-  - BanubaSdk (~> 1.17.0)
   - BNBBackground (~> 1.17.0)
   - BNBFaceTracker (~> 1.17.0)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
@@ -1698,23 +1633,12 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - SocketRocket
   https://github.com/sdk-banuba/banuba-sdk-podspecs.git:
-    - BanubaSdk
-    - BNBAcneEyebagsRemoval
     - BNBBackground
-    - BNBBody
     - BNBEffectPlayer
-    - BNBEyes
-    - BNBFaceAttributes
     - BNBFaceTracker
-    - BNBHair
-    - BNBHands
-    - BNBLightSourceDetector
-    - BNBLips
-    - BNBMakeup
     - BNBScripting
     - BNBSdkApi
     - BNBSdkCore
-    - BNBSkin
 
 EXTERNAL SOURCES:
   banuba-sdk-react-native:
@@ -1851,23 +1775,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   banuba-sdk-react-native: 9694839626b0f3a3713cee31809641ece0903256
-  BanubaSdk: a1e41ef51e2ddc3fec94069a472cbacc5a8a293b
-  BNBAcneEyebagsRemoval: e7478d53d0add9b5262f4ac689479a4074ba82dd
   BNBBackground: 409752fcce468f3776e414045947adb2594fa4a8
-  BNBBody: e1dc840cc48a6a280664b6317130d599e3aa0997
   BNBEffectPlayer: 0e6911332400fbcf82a0b0c9de7bf7f9a9f16dad
-  BNBEyes: 10eedfad2edad3cde34694613c13cc027b416b40
-  BNBFaceAttributes: dd0af66a3a027b881ed62fa54ff6ebbb5c6c6814
   BNBFaceTracker: 6be28c85e0a3ea1ac75e87aa1d286fb8509914f9
-  BNBHair: 9509d4cec83176637389f80f63b42582fd0e5c67
-  BNBHands: 25096df2986c344182cd9824eb6cbc2451afa9f0
-  BNBLightSourceDetector: 19274238e6423886aa1b63326793499814b1820a
-  BNBLips: 29ba950f0fc2b976954cfc564b404e4d43ea0976
-  BNBMakeup: 4f8d2c0c6e909ff4a7afc09b6c0934ba3aea360e
   BNBScripting: 025ad9569356f48bc31ca64fc891720f5c989781
   BNBSdkApi: ed9a0744b1497526630482cde601eb4d35e9d853
   BNBSdkCore: 3db661648b5f70ced6852a1a6eea3268f2d687b7
-  BNBSkin: dddbdc59a2160caaa75d2260689ebca7f41d807e
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 430e10366de01d1e3d57374500b1b150fe482e6d
@@ -1934,6 +1847,6 @@ SPEC CHECKSUMS:
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 055f92ad73f8c8600a93f0e25ac0b2344c3b07e6
 
-PODFILE CHECKSUM: fec9215c389db8025c4236e111ad4d2492f65889
+PODFILE CHECKSUM: f10f0dc78bf3edde9af4d8816b29ebb552651872
 
 COCOAPODS: 1.16.2

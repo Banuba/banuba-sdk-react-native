@@ -189,7 +189,7 @@ class BanubaSdkManager: RCTEventEmitter {
 
                 do {
                     let manager = FileManager.default
-                    let photoFileName = "tmp.png"
+                    let photoFileName = "processed_image.png"
                     let destinationUrl = manager.temporaryDirectory.appendingPathComponent(photoFileName)
                     if manager.fileExists(atPath: destinationUrl.path) {
                         try? manager.removeItem(at: destinationUrl)
