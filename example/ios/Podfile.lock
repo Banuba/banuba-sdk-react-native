@@ -1,5 +1,5 @@
 PODS:
-  - banuba-sdk-react-native (1.0.3):
+  - banuba-sdk-react-native (1.0.4):
     - BNBSdkApi (~> 1.17.0)
     - DoubleConversion
     - glog
@@ -1774,7 +1774,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  banuba-sdk-react-native: 9694839626b0f3a3713cee31809641ece0903256
+  banuba-sdk-react-native: 7f1935c71bae1b4a93ba5d73f9aed9741ca1fb20
   BNBBackground: 409752fcce468f3776e414045947adb2594fa4a8
   BNBEffectPlayer: 0e6911332400fbcf82a0b0c9de7bf7f9a9f16dad
   BNBFaceTracker: 6be28c85e0a3ea1ac75e87aa1d286fb8509914f9
