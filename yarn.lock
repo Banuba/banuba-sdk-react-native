@@ -1992,6 +1992,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.75.4
     react-native-fs: ^2.20.0
+    react-native-image-picker: ^8.2.0
   languageName: unknown
   linkType: soft
 
@@ -11355,6 +11356,16 @@ __metadata:
     react-native-windows:
       optional: true
   checksum: 0be9bb9a5c13b501d0a3006efc3aa5c0b5b211456ee04718297f4e522532f3527f1daa220bd67d3b82d819ed8fdab8f64b7d6e0d7b768c1fd1d8ec9122d94316
+  languageName: node
+  linkType: hard
+
+"react-native-image-picker@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "react-native-image-picker@npm:8.2.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: d261d4f0571b771c5d2d8a1d5c129743a4993318a454e5bf7850db0fa452d4d5da2215a2f2af3879cd38211b864b3ba77d1d09255ff1f43112b3dcf985d6c233
   languageName: node
   linkType: hard
 

@@ -1,76 +1,107 @@
 /* eslint-disable react-native/no-inline-styles */
-import BanubaSdkManager, { EffectPlayerView } from '@banuba/react-native';
-import React from 'react';
-import { Component } from 'react';
-import { Button, NativeEventEmitter, View } from 'react-native';
+import BanubaSdkManager from '@banuba/react-native';
+import React, { Component } from 'react';
+import { Button, NativeEventEmitter, View, Image, StyleSheet } from 'react-native';
 import * as RNFS from 'react-native-fs';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 export default class App extends Component {
-  ep: any;
-  eventEmitter: NativeEventEmitter;
-  recording = false;
+  eventEmitter = new NativeEventEmitter(BanubaSdkManager);
+
   state = {
-    recodButtonTitle: 'Tap to record',
+    effectChosen: false,
+    processedPhotoUri: null,
   };
 
-  constructor(props: {} | Readonly<{}>) {
+  constructor(props) {
     super(props);
-    BanubaSdkManager.initialize([], 'Client token');
-    this.ep = React.createRef<typeof EffectPlayerView>();
+    BanubaSdkManager.initialize([], 'Client Token');
 
-    this.eventEmitter = new NativeEventEmitter(BanubaSdkManager);
-    this.eventEmitter.addListener('onVideoRecordingStatus', (started) => {
-      console.log('onVideoRecordingStatus', started);
-    });
-    this.eventEmitter.addListener('onVideoRecordingFinished', (success) => {
-      console.log('onVideoRecordingFinished', success);
-    });
-    this.eventEmitter.addListener('onScreenshotReady', (success) => {
-      console.log('onScreenshotReady', success);
+    this.eventEmitter.addListener('processImageEvent', (result) => {
+      console.log('processImageEvent', result);
+      if (typeof result === 'string' && result.length > 0) {
+        const uri = result.startsWith('file://') ? result : `file://${result}`;
+        this.setState({ processedPhotoUri: uri });
+      }
     });
   }
 
-  render(): React.ReactNode {
+  componentWillUnmount() {
+    this.eventEmitter.removeAllListeners('processImageEvent');
+  }
+
+  onPressChooseEffect = () => {
+    BanubaSdkManager.startPlayer();
+    BanubaSdkManager.loadEffect('effects/TrollGrandma');
+    this.setState({ effectChosen: true });
+  };
+
+  onPressChoosePhoto = () => {
+    if (!this.state.effectChosen) return;
+    const options = {
+      mediaType: 'photo',
+      quality: 1,
+    };
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+      } else {
+        if (response.assets && response.assets.length > 0) {
+          const photo = response.assets[0];
+          console.log('Selected photo: ', photo.uri);
+          BanubaSdkManager.processImage(photo.uri);
+        }
+      }
+    });
+  };
+
+  render() {
+    const { processedPhotoUri, effectChosen } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <EffectPlayerView style={{ flex: 1 }} ref={this.ep} />
-        <View
-          style={{
-            marginTop: -64,
-            marginBottom: 32,
-          }}
-        >
+        {processedPhotoUri ? (
+          <Image
+            source={{ uri: processedPhotoUri }}
+            style={styles.fullScreenImage}
+            resizeMode="contain"
+          />
+        ) : (
+          <View style={styles.placeholder}>
+            <Button title="No image processed yet" disabled={true} />
+          </View>
+        )}
+        <View style={styles.buttonContainer}>
+          <Button title="Choose Effect" onPress={this.onPressChooseEffect} />
+          <View style={{ width: 16 }} />
           <Button
-            onPress={this.onPressVideoRecording}
-            title={this.state.recodButtonTitle}
+            title="Choose Photo"
+            onPress={this.onPressChoosePhoto}
+            disabled={!effectChosen}
           />
         </View>
       </View>
     );
   }
-
-  componentDidMount(): void {
-    BanubaSdkManager.attachView(this.ep.current._nativeTag);
-    BanubaSdkManager.openCamera();
-    BanubaSdkManager.startPlayer();
-    BanubaSdkManager.loadEffect('effects/TrollGrandma');
-  }
-
-  componentWillUnmount(): void {
-    BanubaSdkManager.stopPlayer();
-  }
-
-  onPressVideoRecording = () => {
-    if (!this.recording) {
-      BanubaSdkManager.startVideoRecording(
-        RNFS.DocumentDirectoryPath + '/video.mp4',
-        false
-      );
-      this.setState({ recodButtonTitle: 'Stop recording' });
-    } else {
-      BanubaSdkManager.stopVideoRecording();
-      this.setState({ recodButtonTitle: 'Tap to record' });
-    }
-    this.recording = !this.recording;
-  };
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 32,
+    paddingHorizontal: 16,
+  },
+  fullScreenImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  placeholder: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
