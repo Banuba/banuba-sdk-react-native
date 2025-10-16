@@ -1,6 +1,6 @@
 {
   "name": "@banuba/react-native",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Banuba SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

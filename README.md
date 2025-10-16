@@ -1,22 +1,46 @@
+![FAR hero](mdDocs/img-Blog-Hero-face-detection-and-face-tracking-with-deep-learning.png)
+
 # Banuba React Native Plugin
 
 ## Overview
 
-[Banuba Face AR Plugin](https://docs.banuba.com/far-sdk/tutorials/development/basic_integration?platform=reactnative) is intended to provide a suite of augmented reality features applicable on photos and live video feed (live streaming, video conferencing, etc.). The package includes:
+[Banuba Face AR SDK](https://www.banuba.com/facear-sdk/face-filters) 
+for React Native lets developers add real-time AR filters, beauty effects, and 
+virtual try-on experiences to mobile apps.
 
-* Face and hand tracking
-* 3D face filters
-* Virtual try-on of jewelry, cosmetics, headwear, glasses, contacts, and more
-* Color filters (LUTs)
-* Face touch-up
-* Virtual backgrounds
-* Screen recording, take screenshot
-* etc.
+Diverse feature set and easy integration makes this plugin a perfect fit for 
+many niches:
 
-## Requirements
+- Video conferencing
+- Social media
+- eCommerce
+- eLearning
+- Security
+- Banking & Finance
+- Healthcare
+- Gaming
 
-* Android: API level 23(Android 6) or higher
-* IOS: 13.0 or higher
+![FAR](mdDocs/FAR_Halloween_5s_720x300_.gif)
+
+Key features:
+
+- AR face tracking
+- Hand tracking
+- 3D face filters
+- Virtual makeup
+- Color filters (LUTs)
+- Face touch-up
+- Virtual backgrounds
+- Virtual try-on of accessories, rings, piercings, etc.
+- Biometric matching
+- Teeth bleaching simulation
+- Etc.
+
+Banuba Face AR Flutter plugin doesn’t collect any user data and processes 
+everything on the user’s device. This means it is secure by design and 
+**compliant with data protection regulations**.
+
+## [Requirements](https://docs.banuba.com/far-sdk/tutorials/capabilities/system_requirements)
 
 ## Integration guide
 
@@ -26,9 +50,12 @@ Please follow our [Integration Guide](./mdDocs/integration_guide.md) to complete
 
 ### License
 
-Before you commit to a license, you are free to test all the features of the SDK for free. The trial period lasts 14 days. Send us a message to start the [Face AR trial](https://www.banuba.com/facear-sdk/face-filters#form).
+[Start a 14-day free trial](https://www.banuba.com/facear-sdk/face-filters#form) 
+and see how Face AR SDK React Native plugin works. No credit card information 
+is needed.
 
-Feel free to [contact us](https://www.banuba.com/support) if you have any questions.
+Feel free to [contact us](https://www.banuba.com/support) if you have any 
+questions regarding this plugin.
 
 ### Launch
 
@@ -51,13 +78,6 @@ You may also use `npm` to run the sample. See [example/README.md](example/README
 
 ### Useful Docs
 
-* List of [Banuba SDK packages](https://docs.banuba.com/far-sdk/tutorials/development/installation)
+* List of 
+[Banuba SDK packages](https://docs.banuba.com/far-sdk/tutorials/development/installation)
 
-### Dependencies
-
-||Version|
-|:-:|:-:|
-|Yarn|3.6.1|
-|React Native|0.75.4|
-|Android|6.0+|
-|IOS|13.0|
