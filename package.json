@@ -1,6 +1,6 @@
 {
   "name": "@banuba/react-native",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Banuba SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -64,21 +64,24 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
-    "@react-native/eslint-config": "0.75.4",
+    "@react-native-community/cli": "^18.0.0",
+    "@react-native-community/cli-platform-android": "^18.0.0",
+    "@react-native-community/cli-platform-ios": "^18.0.0",
+    "@react-native/eslint-config": "0.79.7",
     "@release-it/conventional-changelog": "^5.0.0",
-    "@types/jest": "^28.1.2",
-    "@types/react": "~17.0.21",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^19.0.0",
     "@types/react-native": "0.70.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^28.1.1",
+    "jest": "^29.2.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "18.3.1",
-    "react-native": "0.75.4",
+    "react": "19.0.0",
+    "react-native": "^0.79.0",
     "react-native-builder-bob": "^0.23.2",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
@@ -94,7 +97,6 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@3.6.4",
   "engines": {
     "node": ">= 18.0.0"
   },
@@ -172,6 +174,7 @@
     ]
   },
   "dependencies": {
-    "react-native-fs": "^2.20.0"
-  }
+    "react-native-fs": "^2.18.0"
+  },
+  "packageManager": "yarn@3.6.1"
 }

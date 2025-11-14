@@ -63,14 +63,14 @@ def enableProguardInReleaseBuilds = false
  * The preferred build flavor of JavaScriptCore (JSC)
  *
  * For example, to use the international variant, you can use:
- * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
  *
  * The international variant includes ICU i18n library and necessary data
  * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
  * give correct results when using with locales other than en-US. Note that
  * this variant is about 6MiB larger per architecture than default.
  */
-def jscFlavor = 'org.webkit:android-jsc:+'
+def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -113,7 +113,7 @@ repositories {
     url "https://maven.pkg.github.com/sdk-banuba/banuba-sdk-android"
       credentials {
         username = "sdk-banuba"
-        password = "\u0067\u0068\u0070\u005f\u004a\u0067\u0044\u0052\u0079\u0049\u0032\u006d\u0032\u004e\u0055\u0059\u006f\u0033\u0033\u006b\u0072\u0034\u0049\u0069\u0039\u0049\u006f\u006d\u0077\u0034\u0052\u0057\u0043\u0064\u0030\u0052\u0078\u006d\u0045\u0069"
+        password = "\u0067\u0068\u0070\u005f\u0073\u0049\u0037\u0066\u006f\u0056\u0051\u0055\u0045\u0032\u006c\u0073\u0054\u0063\u007a\u006c\u0041\u004e\u0073\u0061\u0037\u0067\u0063\u0061\u0059\u0069\u0053\u0038\u0031\u004a\u0032\u0049\u0048\u0043\u0054\u0069"
       }
   }
 }
