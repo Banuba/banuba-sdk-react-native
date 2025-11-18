@@ -1,76 +1,103 @@
 /* eslint-disable react-native/no-inline-styles */
-import BanubaSdkManager, { EffectPlayerView } from '@banuba/react-native';
-import React from 'react';
-import { Component } from 'react';
-import { Button, NativeEventEmitter, View } from 'react-native';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {Button, NativeEventEmitter, Text, View} from 'react-native';
+import BanubaSdkManager, {EffectPlayerView} from '@banuba/react-native';
 import * as RNFS from 'react-native-fs';
 
-export default class App extends Component {
-  ep: any;
-  eventEmitter: NativeEventEmitter;
-  recording = false;
-  state = {
-    recodButtonTitle: 'Tap to record',
-  };
+// Optional: keep the token out of the component body
+const BANUBA_TOKEN = 'Client token';
+const EFFECT_PATH = 'effects/TrollGrandma';
 
-  constructor(props: {} | Readonly<{}>) {
-    super(props);
-    BanubaSdkManager.initialize([], 'Client token');
-    this.ep = React.createRef<typeof EffectPlayerView>();
+export default function App() {
+  // You can refine this type if you need strict typing:
+  // const ep = useRef<React.ElementRef<typeof EffectPlayerView> | null>(null);
+  const ep = useRef<any>(null);
 
-    this.eventEmitter = new NativeEventEmitter(BanubaSdkManager);
-    this.eventEmitter.addListener('onVideoRecordingStatus', (started) => {
-      console.log('onVideoRecordingStatus', started);
-    });
-    this.eventEmitter.addListener('onVideoRecordingFinished', (success) => {
-      console.log('onVideoRecordingFinished', success);
-    });
-    this.eventEmitter.addListener('onScreenshotReady', (success) => {
-      console.log('onScreenshotReady', success);
-    });
-  }
+  const [recording, setRecording] = useState(false);
+  const recordButtonTitle = recording ? 'Stop recording' : 'Tap to record';
 
-  render(): React.ReactNode {
-    return (
-      <View style={{ flex: 1 }}>
-        <EffectPlayerView style={{ flex: 1 }} ref={this.ep} />
-        <View
-          style={{
-            marginTop: -64,
-            marginBottom: 32,
-          }}
-        >
-          <Button
-            onPress={this.onPressVideoRecording}
-            title={this.state.recodButtonTitle}
-          />
-        </View>
-      </View>
+  // Create one emitter instance
+  const eventEmitter = useMemo(
+    () => new NativeEventEmitter(BanubaSdkManager),
+    [],
+  );
+
+  // Guard to avoid re-initializing the SDK when Fast Refresh remounts the component
+  const initializedRef = useRef(false);
+
+  // 1) Initialize SDK once
+  useEffect(() => {
+    if (!initializedRef.current) {
+      BanubaSdkManager.initialize([], BANUBA_TOKEN);
+      initializedRef.current = true;
+    }
+  }, []);
+
+  // 2) Subscribe to events once
+  useEffect(() => {
+    const subStatus = eventEmitter.addListener(
+      'onVideoRecordingStatus',
+      started => {
+        console.log('onVideoRecordingStatus', started);
+      },
     );
-  }
+    const subFinished = eventEmitter.addListener(
+      'onVideoRecordingFinished',
+      success => {
+        console.log('onVideoRecordingFinished', success);
+      },
+    );
+    const subScreenshot = eventEmitter.addListener(
+      'onScreenshotReady',
+      payload => {
+        console.log('onScreenshotReady', payload);
+      },
+    );
 
-  componentDidMount(): void {
-    BanubaSdkManager.attachView(this.ep.current._nativeTag);
-    BanubaSdkManager.openCamera();
-    BanubaSdkManager.startPlayer();
-    BanubaSdkManager.loadEffect('effects/TrollGrandma');
-  }
+    return () => {
+      subStatus.remove();
+      subFinished.remove();
+      subScreenshot.remove();
+    };
+  }, [eventEmitter]);
 
-  componentWillUnmount(): void {
-    BanubaSdkManager.stopPlayer();
-  }
+  // 3) Attach view and start player once the native view is mounted
+  useEffect(() => {
+    // In RN, the ref gets populated after the first render
+    const nativeTag = ep.current?._nativeTag;
+    console.log('🚀 ~ BanubaScreen ~ nativeTag:', ep);
 
-  onPressVideoRecording = () => {
-    if (!this.recording) {
+    if (nativeTag) {
+      BanubaSdkManager.attachView(nativeTag);
+      BanubaSdkManager.openCamera();
+      BanubaSdkManager.startPlayer();
+      BanubaSdkManager.loadEffect(EFFECT_PATH);
+    }
+    // Cleanup player on unmount
+    return () => {
+      BanubaSdkManager.stopPlayer();
+    };
+  }, [ep.current?._nativeTag]); // empty deps => run once after mount
+
+  const onPressVideoRecording = () => {
+    if (!recording) {
       BanubaSdkManager.startVideoRecording(
-        RNFS.DocumentDirectoryPath + '/video.mp4',
-        false
+        `${RNFS.DocumentDirectoryPath}/video.mp4`,
+        false,
       );
-      this.setState({ recodButtonTitle: 'Stop recording' });
+      setRecording(true);
     } else {
       BanubaSdkManager.stopVideoRecording();
-      this.setState({ recodButtonTitle: 'Tap to record' });
+      setRecording(false);
     }
-    this.recording = !this.recording;
   };
+
+  return (
+    <View style={{flex: 1}}>
+      <EffectPlayerView style={{flex: 1}} ref={ep} />
+      <View style={{marginTop: 0, marginBottom: 50}}>
+        <Button onPress={onPressVideoRecording} title={recordButtonTitle} />
+      </View>
+    </View>
+  );
 }

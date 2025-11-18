@@ -61,7 +61,7 @@ questions regarding this plugin.
 
 1. Set up [React Native CLI development environment](https://reactnative.dev/docs/environment-setup).
 2. Clone the repository.
-3. Copy and Paste your Client Token into appropriate section of [example/src/App.tsx](example/src/App.tsx#L18).
+3. Copy and Paste your Client Token into appropriate section of [example/src/App.tsx](example/src/App.tsx#L8).
 4. Run `yarn` command in the root repository. This will install all required dependencies.
 
 #### IOS Specific
