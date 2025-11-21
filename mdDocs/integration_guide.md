@@ -32,22 +32,9 @@ yarn add @banuba/react-native
     buildscript {
         ext {
             ...
-            bnb_sdk_version = '1.16.+'
+            bnb_sdk_version = '1.17.+'
         }
         ...
-    }
-```
-
-2. Add maven repository to android [build.gradle](./example/android/build.gradle#L14):
-
-```groovy
-    maven {
-        name "GitHubPackages"
-        url "https://maven.pkg.github.com/sdk-banuba/banuba-sdk-android"
-        credentials {
-            username = "sdk-banuba"
-            password = "\u0067\u0068\u0070\u005f\u0073\u0049\u0037\u0066\u006f\u0056\u0051\u0055\u0045\u0032\u006c\u0073\u0054\u0063\u007a\u006c\u0041\u004e\u0073\u0061\u0037\u0067\u0063\u0061\u0059\u0069\u0053\u0038\u0031\u004a\u0032\u0049\u0048\u0043\u0054\u0069"
-        }
     }
 ```
 
