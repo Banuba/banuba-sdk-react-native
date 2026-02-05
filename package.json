@@ -173,6 +173,19 @@
       ]
     ]
   },
+  "codegenConfig": {
+    "name": "BanubaSdkSpec",
+    "type": "components",
+    "jsSrcsDir": "specs",
+    "android": {
+      "javaPackageName": "com.banuba.reactnative"
+    },
+    "ios": {
+      "componentProvider": {
+        "EffectPlayerView": "BNBReactEffectPlayerView"
+      }
+    }
+  },
   "dependencies": {
     "react-native-fs": "^2.18.0"
   },
