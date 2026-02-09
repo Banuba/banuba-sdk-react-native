@@ -133,7 +133,8 @@
     "root": true,
     "extends": [
       "@react-native",
-      "prettier"
+      "prettier",
+      "eslint-plugin-prettier"
     ],
     "rules": {
       "prettier/prettier": [
@@ -175,16 +176,19 @@
   },
   "codegenConfig": {
     "name": "BanubaSdkSpec",
-    "type": "components",
+    "type": "all",
     "jsSrcsDir": "specs",
     "android": {
       "javaPackageName": "com.banuba.reactnative"
     },
     "ios": {
-      "componentProvider": {
-        "EffectPlayerView": "BNBReactEffectPlayerView"
-      }
-    }
+        "modulesProvider": {
+          "BanubaSdkManager": "BNBReactBanubaSdkManager"
+        },
+        "componentProvider": {
+          "EffectPlayerView": "BNBReactEffectPlayerView"
+        }
+     }
   },
   "dependencies": {
     "react-native-fs": "^2.18.0"

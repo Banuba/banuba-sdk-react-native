@@ -1,0 +1,165 @@
+#import "BNBReactBanubaSdkManager.h"
+
+
+@implementation BNBReactBanubaSdkManager {
+    BanubaSdkManager* banubaSdkManager;
+    EffectPlayerConfiguration* configuration;
+    bool hasListeners;
+}
+
++ (NSString *)moduleName { 
+  return @"BanubaSdkManager";
+}
+
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(
+    const facebook::react::ObjCTurboModule::InitParams &)params { 
+  return std::make_shared<facebook::react::NativeBanubaSdkManagerSpecJSI>(params);
+}
+
+- (void)closeCamera {
+  [banubaSdkManager.input stopCamera];
+}
+
+- (void)deinitialize { 
+  [banubaSdkManager stopEffectPlayer];
+  [banubaSdkManager removeRenderTarget];
+  [banubaSdkManager destroyEffectPlayer];
+  [BanubaSdkManager deinitialize];
+}
+
+- (void)enableFlashlight:(BOOL)enabled {
+  auto _ = [banubaSdkManager.input setTorchWithMode:
+    enabled? AVCaptureTorchModeOn: AVCaptureTorchModeOff];
+}
+
+- (void)evalJs:(nonnull NSString *)script { 
+  [[[banubaSdkManager effectManager] current] evalJs:script resultCallback: nil];
+}
+
+- (void)initialize:(nonnull NSArray *)resourcePaths
+    clientToken:(nonnull NSString *)clientToken {
+  banubaSdkManager = [BanubaSdkManager new];
+  configuration = [EffectPlayerConfiguration new];
+  hasListeners = false;
+
+  auto  reactResourcePath = resourcePaths;
+  reactResourcePath = [reactResourcePath arrayByAddingObject:
+    [NSBundle.mainBundle.bundlePath stringByAppendingString: @"/bnb-resources"]];
+  reactResourcePath = [reactResourcePath arrayByAddingObject:
+    NSBundle.mainBundle.bundlePath]; // for "effects"
+  [BanubaSdkManager
+    initializeWithResourcePath:reactResourcePath
+    clientTokenString:clientToken logLevel:BNBSeverityLevelInfo];
+     
+  [banubaSdkManager setupWithConfiguration: configuration];
+}
+
+- (void)loadEffect:(nonnull NSString *)path { 
+  [banubaSdkManager startEffectPlayer];
+  if (banubaSdkManager.renderTarget == nil) {
+      [banubaSdkManager setRenderTargetWithLayer: [CAMetalLayer new]
+        playerConfiguration: configuration];
+  }
+}
+
+- (void)openCamera { 
+   [banubaSdkManager.input startCamera];
+}
+
+- (void)pauseVideoRecording { 
+  [banubaSdkManager.output pauseRecording];
+}
+
+- (void)processImage:(nonnull NSString *)path { 
+  // TODO
+}
+
+- (void)reloadConfig:(nonnull NSString *)script { 
+  [banubaSdkManager.effectManager reloadConfig: script];
+}
+
+- (void)resumeVideoRecoding { 
+  [banubaSdkManager.output resumeRecording];
+}
+
+- (void)setCameraFacing:(BOOL)front {
+  auto cameraSessionType = front ?
+    CameraSessionTypeFrontCameraSession : CameraSessionTypeFrontCameraSession;
+  [banubaSdkManager.input
+    switchCameraTo: cameraSessionType completion: ^(void){}];
+}
+
+- (void)setCameraZoom:(double)factor { 
+  auto _ = [banubaSdkManager.input setZoomFactor: factor];
+}
+
+- (void)startPlayer { 
+  [banubaSdkManager startEffectPlayer];
+  if (banubaSdkManager.renderTarget == nil) {
+    [banubaSdkManager setRenderTargetWithLayer: [CAMetalLayer new]
+      playerConfiguration: configuration];
+  }
+}
+
+- (void)startVideoRecording:(nonnull NSString *)path
+    mirrorFrontCamera:(BOOL)mirrorFrontCamera {
+  auto outputConfig = [[OutputConfiguration alloc]
+    initWithApplyWatermark: true
+    adjustDeviceOrientation:false
+    mirrorFrontCamera:mirrorFrontCamera];
+  
+  [banubaSdkManager.output startRecordingWithURL:
+      [[NSURL alloc] initFileURLWithPath:path]
+      configuration: outputConfig
+      progressTimeInterval: 0
+      delegate: self
+  ];
+  [banubaSdkManager.input startAudioCapturing];
+}
+
+- (void)stopPlayer { 
+  [banubaSdkManager stopEffectPlayer];
+}
+
+- (void)stopVideoRecording { 
+  [banubaSdkManager.output stopRecording];
+}
+
+- (void)takeScreenshot:(nonnull NSString *)path { 
+  // TODO
+}
+
+- (void)onRecorderStateChanged:(enum VideoRecordingState)state { 
+  NSLog(@"onRecorderStateChanged(%ld)", long(state));
+    if (hasListeners) {
+        bool status;
+        switch (state) {
+            case VideoRecordingStateRecording:
+            case VideoRecordingStateProcessing:
+                status = true;
+            break;
+            case VideoRecordingStateStopped:
+            case VideoRecordingStatePaused:
+                status = false;
+            break;
+            default:
+                throw std::logic_error("Unreachable branch");
+        }
+
+        [self emitOnVideoRecordingStatus: status];
+    }
+}
+
+- (void)onRecordingFinishedWithSuccess:(BOOL)success error:(NSError * _Nullable)error { 
+  NSLog(@"onRecordingFinished(success: %d, error: %@)",
+    success, error ? error.localizedDescription : @"nil");
+  if (hasListeners) {
+      [self emitOnVideoRecordingFinished: success];
+  }
+  [banubaSdkManager.input stopAudioCapturing];
+}
+
+- (void)onRecordingProgressWithDuration:(NSTimeInterval)duration {
+}
+
+@end
