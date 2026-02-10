@@ -13,8 +13,7 @@ export interface Spec extends TurboModule {
 
   deinitialize(): void;
 
-  // TODO
-  //attachView(tag: number): void;
+  attachView(): void;
 
   openCamera(): void;
 

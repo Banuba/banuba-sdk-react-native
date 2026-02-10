@@ -1,5 +1,7 @@
 #import "BNBReactBanubaSdkManager.h"
 
+#import "BNBReactEffectPlayerView.h"
+
 
 @implementation BNBReactBanubaSdkManager {
     BanubaSdkManager* banubaSdkManager;
@@ -53,11 +55,7 @@
 }
 
 - (void)loadEffect:(nonnull NSString *)path { 
-  [banubaSdkManager startEffectPlayer];
-  if (banubaSdkManager.renderTarget == nil) {
-      [banubaSdkManager setRenderTargetWithLayer: [CAMetalLayer new]
-        playerConfiguration: configuration];
-  }
+  [banubaSdkManager loadEffect:path synchronous:true];
 }
 
 - (void)openCamera { 
@@ -197,6 +195,15 @@
       [self emitOnScreenshotReady:success];
   }];
 }
+
+- (void)attachView { 
+  [banubaSdkManager destroyEffectPlayer];
+  [banubaSdkManager setupWithConfiguration: configuration];
+  [banubaSdkManager
+    setRenderTargetWithView: BNBReactEffectPlayerView.playerView
+    playerConfiguration: nil];
+}
+
 
 - (void)onRecorderStateChanged:(enum VideoRecordingState)state { 
   NSLog(@"onRecorderStateChanged(%ld)", long(state));
