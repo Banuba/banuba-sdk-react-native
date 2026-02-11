@@ -34,6 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.RunnableFuture;
@@ -329,7 +330,9 @@ class BanubaSdkManagerModule extends NativeBanubaSdkManagerSpec
       } else {
         success = bitmap.compress(CompressFormat.PNG, 0, fos);
       }
-    } catch (FileNotFoundException e) {
+      fos.close();
+    } catch (IOException e) {
+      success = false;
       Log.e(TAG, "Failed to write screenshot file", e);
     }
     emitOnScreenshotReady(success);
