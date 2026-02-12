@@ -75,9 +75,11 @@
   }
   
   NSData* imageData;
-  if (!(imageData = [[NSData alloc] initWithContentsOfURL: sourceUrl])) {
-     [self emitProcessImageEvent:@"Error while processing image"];
-     return;
+  NSError* e = nil;
+  if (!(imageData = [[NSData alloc]
+      initWithContentsOfURL: sourceUrl options: 0 error: &e])) {
+    [self emitProcessImageEvent: e.localizedDescription];
+    return;
   }
   
   const auto image = [UIImage imageWithData:imageData];
@@ -131,7 +133,7 @@
 
 - (void)setCameraFacing:(BOOL)front {
   auto cameraSessionType = front ?
-    CameraSessionTypeFrontCameraSession : CameraSessionTypeFrontCameraSession;
+    CameraSessionTypeFrontCameraSession : CameraSessionTypeBackCameraSession;
   [banubaSdkManager.input
     switchCameraTo: cameraSessionType completion: ^(void){}];
 }
