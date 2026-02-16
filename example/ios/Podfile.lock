@@ -1,5 +1,5 @@
 PODS:
-  - banuba-sdk-react-native (1.0.7):
+  - banuba-sdk-react-native (1.0.8):
     - BNBSdkApi (~> 1.17.0)
     - DoubleConversion
     - glog
@@ -1934,7 +1934,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  banuba-sdk-react-native: 078837a8987eb2b894656f6d9a6220d0e42cb56f
+  banuba-sdk-react-native: 0f8883af506592c1bfea057ad8dbb9dc40aad398
   BNBBackground: 8e1888bd4879bfd5b4ee273c56dcb8d34d40a789
   BNBEffectPlayer: 642e6a7ce9991c34cf2674671adea0167cc6d3e9
   BNBFaceTracker: ed62007fa11d786901895f6e2ff8feeb7c301a27
@@ -1985,14 +1985,14 @@ SPEC CHECKSUMS:
   React-performancetimeline: 75139687f2db7ca68fd0377466949af0b3408995
   React-RCTActionSheet: 9b3b04bbe75241c964d59a3ec18716d0bec22b2c
   React-RCTAnimation: 2ffefa3b11df9aa1248182fac5b74e6a9b5ebd21
-  React-RCTAppDelegate: f3833bcbd47518336c5692d602e01ce2fe6f2c7c
+  React-RCTAppDelegate: 535dd2b407b204bbdd0c46d4c7050ee1a28fa6f9
   React-RCTBlob: 3cf08a694a3f7b082e23717c7587b8d914685582
-  React-RCTFabric: 052e2b93a5ae99762dad801c130b07599c43a3f8
-  React-RCTFBReactNativeSpec: 12f74eedb007b094b8f05928853fca36a2b9786c
+  React-RCTFabric: 2026fe43aa1142896e7e68237f6e88e283f8cab3
+  React-RCTFBReactNativeSpec: 43cea3b898e0e7e81abfeafd2dd4084dd8afe662
   React-RCTImage: 4eaca67175ed2a33d39eeb8bad0e724c849bdc11
   React-RCTLinking: 5133d7bf648707bc3fb65fb7ab3cfa7f445e9893
   React-RCTNetwork: 708cf70b59721a23cc362cde08dd204375c9d0ac
-  React-RCTRuntime: 2d3ba93b9758077e730e4a0c304c629365b47acd
+  React-RCTRuntime: b361aa130a54eeb9bd3129fe0335513c981353b3
   React-RCTSettings: 6d413683ae5a36e80c7965f1ff8efa893b211a17
   React-RCTText: 0bd1e63583ba3dab0358f62ade056732b76463f8
   React-RCTVibration: bab25bb8bc2f017e4729deb59d26bb32240b16db
@@ -2014,6 +2014,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 9663a18d096f7f7e17a535cf00849db756709955
 
-PODFILE CHECKSUM: 039b8b46740fd9e93cb9d67a9d04372d7c5d26f5
+PODFILE CHECKSUM: 270575d237a02b69eea363a9abc9fccab21e74b2
 
 COCOAPODS: 1.16.2

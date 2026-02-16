@@ -1,6 +1,6 @@
 {
   "name": "@banuba/react-native",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "Banuba SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -72,6 +72,7 @@
     "@types/jest": "^29.5.13",
     "@types/react": "^19.0.0",
     "@types/react-native": "0.70.0",
+    "baseline-browser-mapping": "^2.9.19",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -133,7 +134,8 @@
     "root": true,
     "extends": [
       "@react-native",
-      "prettier"
+      "prettier",
+      "eslint-plugin-prettier"
     ],
     "rules": {
       "prettier/prettier": [
@@ -172,6 +174,22 @@
         }
       ]
     ]
+  },
+  "codegenConfig": {
+    "name": "BanubaSdkSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.banuba.reactnative"
+    },
+    "ios": {
+      "modulesProvider": {
+        "BanubaSdkManager": "BNBReactBanubaSdkManager"
+      },
+      "componentProvider": {
+        "EffectPlayerView": "BNBReactEffectPlayerView"
+      }
+    }
   },
   "dependencies": {
     "react-native-fs": "^2.18.0"
