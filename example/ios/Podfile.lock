@@ -1,6 +1,6 @@
 PODS:
-  - banuba-sdk-react-native (1.0.8):
-    - BNBSdkApi (~> 1.17.0)
+  - banuba-sdk-react-native (2.0.0):
+    - BNBSdkApi (~> 1.18.0)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -24,19 +24,19 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - BNBBackground (1.17.6):
-    - BNBEffectPlayer (= 1.17.6)
-    - BNBScripting (= 1.17.6)
-    - BNBSdkCore (= 1.17.6)
-  - BNBEffectPlayer (1.17.6)
-  - BNBFaceTracker (1.17.6):
-    - BNBEffectPlayer (= 1.17.6)
-    - BNBScripting (= 1.17.6)
-    - BNBSdkCore (= 1.17.6)
-  - BNBScripting (1.17.6)
-  - BNBSdkApi (1.17.6):
-    - BNBSdkCore (= 1.17.6)
-  - BNBSdkCore (1.17.6)
+  - BNBBackground (1.18.0):
+    - BNBEffectPlayer (= 1.18.0)
+    - BNBScripting (= 1.18.0)
+    - BNBSdkCore (= 1.18.0)
+  - BNBEffectPlayer (1.18.0)
+  - BNBFaceTracker (1.18.0):
+    - BNBEffectPlayer (= 1.18.0)
+    - BNBScripting (= 1.18.0)
+    - BNBSdkCore (= 1.18.0)
+  - BNBScripting (1.18.0)
+  - BNBSdkApi (1.18.0):
+    - BNBSdkCore (= 1.18.0)
+  - BNBSdkCore (1.18.0)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - fast_float (6.1.4)
@@ -1699,8 +1699,8 @@ PODS:
 
 DEPENDENCIES:
   - banuba-sdk-react-native (from `../..`)
-  - BNBBackground (~> 1.17.0)
-  - BNBFaceTracker (~> 1.17.0)
+  - BNBBackground (~> 1.18.0)
+  - BNBFaceTracker (~> 1.18.0)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - fast_float (from `../node_modules/react-native/third-party-podspecs/fast_float.podspec`)
@@ -1934,13 +1934,13 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  banuba-sdk-react-native: 0f8883af506592c1bfea057ad8dbb9dc40aad398
-  BNBBackground: 8e1888bd4879bfd5b4ee273c56dcb8d34d40a789
-  BNBEffectPlayer: 642e6a7ce9991c34cf2674671adea0167cc6d3e9
-  BNBFaceTracker: ed62007fa11d786901895f6e2ff8feeb7c301a27
-  BNBScripting: a2fc7e7dc6b57124dd196b20ffb0b1a82b08d412
-  BNBSdkApi: 1336b44f65753634c500fe33494c8bbd40afadaf
-  BNBSdkCore: fdee497cfb933312b47e85cc98cb77b6ff579832
+  banuba-sdk-react-native: add01975b2b41793c0147bdc9b9633105c26d58d
+  BNBBackground: 876aafe44c28da5202a8fc6eb222bccd59920b6b
+  BNBEffectPlayer: d02533930e139aa7443cc48bf04b4e212f93b767
+  BNBFaceTracker: a808fdab4cd9caf650200246195eb74fd0f147d6
+  BNBScripting: 619686ec2ee1fb109c255a55578fddd86011a137
+  BNBSdkApi: cfbd9c48931b220c926d9d83ac684fa865b2a366
+  BNBSdkCore: 2cb98e883775749f7de2a386dfa84b69f0731794
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -2014,6 +2014,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 9663a18d096f7f7e17a535cf00849db756709955
 
-PODFILE CHECKSUM: 270575d237a02b69eea363a9abc9fccab21e74b2
+PODFILE CHECKSUM: 1474643831726f52a56c303f8eb38acf050ff63e
 
 COCOAPODS: 1.16.2

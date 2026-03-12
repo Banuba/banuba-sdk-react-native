@@ -32,7 +32,7 @@ yarn add @banuba/react-native
     buildscript {
         ext {
             ...
-            bnb_sdk_version = '1.17.+'
+            bnb_sdk_version = '1.18.+'
         }
         ...
     }
@@ -44,7 +44,7 @@ yarn add @banuba/react-native
 
 ```
 source 'https://github.com/sdk-banuba/banuba-sdk-podspecs.git'
-$bnb_sdk_version = '~> 1.16.0'
+$bnb_sdk_version = '~> 1.18.0'
 ```
 
 2. Add NSCameraUsageDescription in the [Info.plist](example/ios/ReactNativeExample/Info.plist#L34):
