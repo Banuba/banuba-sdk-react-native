@@ -1,7 +1,7 @@
 {
   "name": "@banuba/react-native",
   "version": "2.0.1",
-  "description": "Banuba SDK for React Native",
+  "description": "Banuba Face AR SDK for React Native — real-time face tracking, AR face filters, virtual makeup, beautification and background removal on iOS and Android.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
