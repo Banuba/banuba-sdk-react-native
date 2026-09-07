@@ -31,18 +31,19 @@ BNB_DECLARE_SAMPLER_2D(10, 11, tex_mrao);
 #ifdef GLFX_TEX_EMI
 #endif
 
-#ifdef GLFX_USE_SHADOW
+#ifdef BNB_USE_SHADOW
+
 BNB_IN(5) vec3 var_shadow_coord;
 float glfx_shadow_factor()
 {
-    const vec2 offsets[] = vec2[](
-        vec2( -0.94201624, -0.39906216 ),
-        vec2( 0.94558609, -0.76890725 ),
-        vec2( -0.094184101, -0.92938870 ),
-        vec2( 0.34495938, 0.29387760 )
-    );
+
+	vec2 offsets[4];
+	offsets[0] = vec2( -0.94201624, -0.39906216 );
+	offsets[1] = vec2( 0.94558609, -0.76890725 );
+	offsets[2] = vec2( -0.094184101, -0.92938870 );
+	offsets[3] = vec2( 0.34495938, 0.29387760 );
     float s = 0.;
-    for( int i = 0; i != offsets.length(); ++i )
+    for( int i = 0; i != 4 /*assume that offsets.length() was called.*/; ++i )
         s += texture( glfx_SHADOW, var_shadow_coord + vec3(offsets[i]/110.,0.1) );
     s *= 0.125;
     return s;
@@ -108,18 +109,20 @@ BNB_DECLARE_SAMPLER_CUBE(8, 9, tex_ibl_spec);
 
 #ifdef GLFX_LIGHTS
 // direction in xyz, lwrap in w
-const vec4 lights[] = vec4[]( 
-    vec4(0.,0.6,0.8,1.),
-    vec4(normalize(vec3(97.6166,-48.185,183.151)),1.)
-    );
-const vec3 radiance[] = vec3[]( 
-    vec3(1.,1.,1.)*2.,
-    vec3(1.,1.,1.)*0.9*2.
-    );
 #endif
 
 void main()
 {
+#ifdef GLFX_LIGHTS
+	vec3 radiance[2];
+	radiance[1] = vec3(1.,1.,1.)*0.9*2.;
+	radiance[0] = vec3(1.,1.,1.)*2.;
+#endif
+#ifdef GLFX_LIGHTS
+	vec4 lights[2];
+	lights[1] = vec4(normalize(vec3(97.6166,-48.185,183.151)),1.);
+	lights[0] = vec4(0.,0.6,0.8,1.);
+#endif
     vec4 base_opacity = BNB_TEXTURE_2D(BNB_SAMPLER_2D(tex_diffuse),var_uv);
 
     //if( base_opacity.w < 0.5 ) discard;
@@ -181,7 +184,7 @@ void main()
 
 #ifdef GLFX_LIGHTS
     float ggx2 = geometry_schlick_GGX( cN_V, roughness );
-    for( int i = 0; i != lights.length(); ++i )
+    for( int i = 0; i != 2 /*assume that lights.length() was called.*/; ++i )
     {
         vec3 L = lights[i].xyz;
         float lwrap = lights[i].w;
@@ -215,7 +218,8 @@ void main()
     color += g2l(BNB_TEXTURE_2D(BNB_SAMPLER_2D(tex_emi),var_uv).xyz);
 #endif
 
-#ifdef GLFX_USE_SHADOW
+#ifdef BNB_USE_SHADOW
+
     color = mix( color, vec3(0.), glfx_shadow_factor() );
 #endif
 

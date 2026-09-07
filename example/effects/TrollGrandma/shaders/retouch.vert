@@ -1,7 +1,14 @@
 #include <bnb/glsl.vert>
 #include <bnb/decode_int1010102.glsl>
+#include<bnb/matrix_operations.glsl>
 #define bnb_IDX_OFFSET 0
 #ifdef BNB_VK_1
+#ifdef gl_VertexID
+#undef gl_VertexID
+#endif
+#ifdef gl_InstanceID
+#undef gl_InstanceID
+#endif
 #define gl_VertexID gl_VertexIndex
 #define gl_InstanceID gl_InstanceIndex
 #endif
@@ -45,9 +52,6 @@ void main()
     sp[1].zw = var_bg_uv + vec2(delta.x, -delta.y);
     sp[2].zw = var_bg_uv + vec2(-delta.x, delta.y);
     sp[3].zw = var_bg_uv + vec2(delta.x, delta.y);
-#ifdef BNB_VK_1
-var_bg_uv.y = 1. - var_bg_uv.y;
-#endif
 
 #ifdef BNB_VK_1
     sp[0].y = 1. - sp[0].y;
@@ -58,5 +62,8 @@ var_bg_uv.y = 1. - var_bg_uv.y;
     sp[1].w = 1. - sp[1].w;
     sp[2].w = 1. - sp[2].w;
     sp[3].w = 1. - sp[3].w;
+#endif
+#ifdef BNB_VK_1
+var_bg_uv.y = 1. - var_bg_uv.y;
 #endif
 }

@@ -1,4 +1,5 @@
 #include <bnb/glsl.frag>
+#include <bnb/lut.glsl>
 
 BNB_IN(0) vec2 var_uv;
 
